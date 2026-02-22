@@ -1270,20 +1270,13 @@
     .trust-guarantee-inner {
       display: flex;
       align-items: center;
-      gap: 40px;
-      max-width: 640px;
+      gap: 0;
+      max-width: 760px;
       width: 100%;
     }
 
-    .trust-guarantee-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      color: var(--accent-light);
-      border: 1px solid var(--accent-light);
-      padding: 10px 16px;
-      white-space: nowrap;
-      flex-shrink: 0;
+    .trust-guarantee-main {
+      flex: 1;
     }
 
     .trust-guarantee-title {
@@ -1301,6 +1294,32 @@
       line-height: 1.9;
     }
 
+    .trust-guarantee-free {
+      flex-shrink: 0;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding-left: 56px;
+      margin-left: 56px;
+      text-align: center;
+    }
+
+    .trust-free-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .trust-free-value {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--accent-light);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
     @media (max-width: 768px) {
       .trust-guarantee {
         padding: 48px 24px;
@@ -1309,7 +1328,17 @@
       .trust-guarantee-inner {
         flex-direction: column;
         align-items: flex-start;
-        gap: 20px;
+        gap: 0;
+      }
+
+      .trust-guarantee-free {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-left: 0;
+        margin-left: 0;
+        padding-top: 28px;
+        margin-top: 28px;
+        text-align: left;
       }
     }
 
@@ -1962,9 +1991,13 @@
   <!-- TRUST GUARANTEE -->
   <div class="trust-guarantee">
     <div class="trust-guarantee-inner">
-      <div>
+      <div class="trust-guarantee-main">
         <div class="trust-guarantee-title">アイデアは、絶対に使いません。</div>
         <div class="trust-guarantee-body">お聞きしたアイデアや構想を自分たちが実装すること、他のクライアントにお話しすること——どちらも、絶対にしません。信頼があってこそ、一緒にいい仕事ができると思っています。</div>
+      </div>
+      <div class="trust-guarantee-free">
+        <div class="trust-free-label">First Consultation</div>
+        <div class="trust-free-value">初回無料</div>
       </div>
     </div>
   </div>
