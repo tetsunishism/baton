@@ -92,14 +92,24 @@
     }
 
     .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--gray);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
       margin-bottom: 32px;
-      text-transform: uppercase;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-eyebrow span {
+      color: var(--accent);
     }
 
     .hero-pain {
@@ -1120,7 +1130,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <p class="hero-eyebrow">Prototype → Production</p>
+      <p class="hero-eyebrow">Prototype <span>→</span> Production</p>
       <h1 class="hero-pain">
         作れた。<br>
         でも、<em>出せてない。</em>
