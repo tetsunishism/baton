@@ -1051,6 +1051,17 @@
       to { opacity: 1; }
     }
 
+    /* MOBILE HERO ANIMATIONS */
+    @keyframes slideInMobileTop {
+      from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    @keyframes slideInMobileBottom {
+      from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
     /* SCROLL REVEAL */
     .reveal {
       opacity: 0;
@@ -1079,23 +1090,34 @@
       }
 
       .hero-right {
-        height: 320px;
+        height: 480px;
       }
 
       .hero-visual-wrap {
-        width: 270px;
-        height: 270px;
+        width: 210px;
+        height: 440px;
       }
 
       .card-proto,
       .card-prod {
-        width: 140px;
-        padding: 12px;
+        width: 190px;
       }
 
-      .wire-img { height: 44px; }
-      .prod-chart { height: 32px; }
-      .prod-stat-val { font-size: 12px; }
+      /* 縦積みレイアウト：回転なし・中央揃え */
+      .card-proto {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: slideInMobileTop 0.7s ease 0.8s forwards;
+      }
+
+      .card-prod {
+        bottom: 0;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: slideInMobileBottom 0.7s ease 1.0s forwards;
+      }
 
       section {
         padding: 80px 24px;
