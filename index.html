@@ -2725,6 +2725,11 @@
 
         quiz.style.display = 'none';
         result.style.display = 'block';
+        var diagSection = document.getElementById('diagnosis');
+        if (diagSection) {
+          var top = diagSection.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
       });
 
       document.getElementById('quiz-retry').addEventListener('click', function () {
