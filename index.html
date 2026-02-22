@@ -2705,7 +2705,7 @@
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
-              setTimeout(function () { window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener'); }, 800);
+              setTimeout(function () { window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener'); }, 2500);
             });
           };
         }
@@ -2719,7 +2719,7 @@
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をコピーしました。\nフォームの詳細欄に貼り付けてください。');
-              setTimeout(function () { window.open(formUrl, '_blank', 'noopener'); }, 800);
+              setTimeout(function () { window.open(formUrl, '_blank', 'noopener'); }, 2500);
             });
           };
         }
