@@ -1518,6 +1518,21 @@
       margin-bottom: 10px;
     }
 
+    .result-steps {
+      margin: 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .result-steps li {
+      font-size: 14px;
+      color: var(--black);
+      line-height: 1.7;
+      padding-left: 4px;
+    }
+
     .result-next-value {
       font-size: 14px;
       color: var(--black);
@@ -2478,8 +2493,8 @@
           </div>
         </div>
         <div class="result-next">
-          <div class="result-next-label">まず取り組むべきこと</div>
-          <div class="result-next-value" id="result-next"></div>
+          <div class="result-next-label">本番化までにやること</div>
+          <ol class="result-steps" id="result-steps"></ol>
         </div>
         <div class="result-cta-group">
           <a href="#" id="result-line-btn" target="_blank" rel="noopener" class="result-btn-line">この結果をもとにLINEチャットで相談</a>
@@ -2553,28 +2568,22 @@
       var statusMap = { A: '構想・初期段階', B: '基本機能完成', C: 'PoC完成型', D: 'プロトタイプ完成型' };
       var timelineMap = { A: '12〜16週間', B: '8〜12週間', C: '6〜8週間', D: '4〜6週間' };
       var nextMap = {
-        A1: '本番を見据えた技術スタックの整理と、インフラ設計から始めましょう。',
-        A2: 'MVPを固めながら、セキュリティを考慮した設計を一から組みます。',
-        A3: 'コアバリューを整理し、UX設計と開発を並走させて進めます。',
-        A4: '何を作るかの整理から。全体像を一緒に定義するところから始めます。',
-        B1: '認証まわりを本番品質に引き上げつつ、インフラを整備します。',
-        B2: '認証・セキュリティの強化を最優先に、本番化ロードマップを組みます。',
-        B3: '機能は揃っています。UXを磨きながら、本番環境を整えます。',
-        B4: '現状をレビューして、本番化に必要な要件を洗い出します。',
-        C1: '決済実装とインフラ構築をまとめて進めます。リリースが一気に近づきます。',
-        C2: '決済・認証まわりのセキュリティを集中的に固めます。',
-        C3: '決済前のUXが最後の壁。ここを磨けばリリースが現実になります。',
-        C4: 'あと一歩です。全体をレビューして、本番化の最終チェックを行います。',
-        D1: 'コードを読んで本番インフラを設計します。思ったより早く出せるはずです。',
-        D2: '動いているものを活かしながら、セキュリティを本番レベルに引き上げます。',
-        D3: 'プロダクトは完成しています。UXを磨けば、すぐリリースできます。',
-        D4: 'ほぼ出せる状態です。一緒にレビューして、最終判断を行います。'
-      };
-      var urgencyMap = {
-        asap: 'スピードを最優先に動きます。',
-        soon: '1〜3ヶ月のスケジュールで進めます。',
-        medium: '余裕を持ったスケジュールで進めましょう。',
-        tbd: 'まずは方向性を整理するところから始めましょう。'
+        A1: ['作りたい機能を3つに絞る（削ぎ落とすほど早くできる）', 'AIツールでログイン画面から作り始める', '動く状態になったら本番サーバーに乗せる', '独自ドメインで公開する'],
+        A2: ['誰がどう使うアプリか1文で定義する', '「登録 → 使う → 目的達成」の流れを紙に書く', 'AIでまず動くものを作る', 'ログインとデータ保護は最初から設計に組み込む'],
+        A3: ['このサービスで誰の何が解決するか1文にする', '使う人の行動を順番に書き出す', 'AIで画面を作りながらデザインを決めていく', 'LPはアプリが完成してから磨く'],
+        A4: ['「〇〇な人が△△できる」を1文にする', '機能を3つに絞る', '誰か1人に使ってもらってみる', 'AIで最速でプロトタイプを作る'],
+        B1: ['テスト用の本番環境を立てる', '独自ドメインを取得して鍵マーク（SSL）をつける', '開発用と本番用の設定を分ける', 'コードを更新したら自動で反映される仕組みを作る'],
+        B2: ['パスワードが安全に保管されているか確認する', '不正ログイン対策（試行回数の制限）を入れる', 'ログインの有効期限を設定する', '全ページで通信が暗号化されているか確認する', 'AIが書いたログインコードは要注意 — 一緒に確認します'],
+        B3: ['ログイン後の画面を整理する（何ができるか一目でわかるか）', '読み込み中・エラー・データがないときの画面を作る', 'スマホで使えるか確認する', '色・フォントなど見た目を統一する', '目的達成までの手順を最短にする'],
+        B4: ['今の状態を一緒に整理する（何が動いて何が足りないか）', 'セキュリティ上の問題がないか確認する', '必要な作業をリスト化して優先順位をつける', 'リリースまでのスケジュールを引く'],
+        C1: ['本番サーバーを立てる', '独自ドメインと鍵マーク（SSL）の設定', 'Stripeの本番アカウントを申請する（審査に数日かかります）', '支払い完了がシステムに自動連携される設定をする', '実際に決済テストをして確認する'],
+        C2: ['全ページで通信が暗号化されているか確認する', 'ログインセッションを強化する', 'カード情報は自前で持たずStripeに任せる設計にする', 'APIキーをコードの外で安全に管理する', '不正なアクセスをブロックする設定をする'],
+        C3: ['決済の流れを整理する（選ぶ → 入力 → 確認 → 完了）', 'カードが使えなかったときのエラー画面を作る', '支払い完了後のお礼ページと確認メールを設計する', 'スマホで決済できるか確認する', '安心感を高めるデザインにする'],
+        C4: ['今のコードで決済前に問題がないか確認する', 'サーバーとStripeの設定を進める', '出す前のチェックリストを一緒に作る', 'テスト決済で問題なければリリース'],
+        D1: ['コードを読んで本番に適したサーバーを選ぶ', 'アクセスが増えても耐えられる設計にする', 'データのバックアップ体制を作る', '表示速度を上げる設定をする', '問題が起きたら即通知される監視を入れる'],
+        D2: ['ログインまわりのコードを全部確認する', 'よくある攻撃（不正ログイン・データ改ざん等）への対策を確認する', 'ログインセッションの管理を強化する', 'サーバーの機密情報を安全に管理する', 'アクセスログを残す（問題発生時の追跡のため）'],
+        D3: ['一番使われる機能のUXを改善する', '色・フォント・ボタンのデザインを統一する', '読み込み中・エラー・データなし画面を仕上げる', 'スマホ対応を完成させる', '実際に使ってもらってフィードバックを反映する'],
+        D4: ['コード全体を確認して品質を担保する', 'セキュリティに問題がないか確認する', '重い・遅いところがないか確認する', '本番サーバーの最終設定をする', 'まず限定公開で少人数に試してもらう', '問題なければ本公開へ']
       };
       var q1Labels = { web: 'Webアプリ / SaaS', mobile: 'スマホアプリ', internal: '社内ツール・業務系', lp: 'LP / 情報サイト' };
       var q2Labels = { 'ai-ide': 'Cursor / Claude / ChatGPT', 'ai-gen': 'v0 / Bolt / Lovable', nocode: 'No-code（Webflow, Bubble等）', code: '自分でコードを書いた' };
@@ -2584,7 +2593,7 @@
 
       function buildSummaryText(ans) {
         var q3 = ans[2], q4 = ans[3], q5 = ans[4];
-        var nextText = ((nextMap[q3 + q4] || '') + ' ' + (urgencyMap[q5] || '')).trim();
+        var steps = nextMap[q3 + q4] || [];
         return [
           '【Baton 診断結果】',
           'Q1 アプリの種類: ' + (q1Labels[ans[0]] || ans[0] || '未回答'),
@@ -2595,8 +2604,8 @@
           '',
           'あなたの状態: ' + (statusMap[q3] || ''),
           '本番化までの想定期間: ' + (timelineMap[q3] || ''),
-          'まず取り組むべきこと: ' + nextText
-        ].join('\n');
+          '本番化までにやること:',
+        ].concat(steps.map(function(s, i) { return (i + 1) + '. ' + s; })).join('\n');
       }
 
       function buildFormUrl(ans) {
@@ -2690,11 +2699,17 @@
       prevBtn.addEventListener('click', function () { if (currentStep > 0) goToStep(currentStep - 1); });
 
       submitBtn.addEventListener('click', function () {
-        var q3 = answers[2], q4 = answers[3], q5 = answers[4];
+        var q3 = answers[2], q4 = answers[3];
         document.getElementById('result-status').textContent = statusMap[q3] || '';
         document.getElementById('result-timeline').textContent = timelineMap[q3] || '';
-        var nextText = (nextMap[q3 + q4] || '') + ' ' + (urgencyMap[q5] || '');
-        document.getElementById('result-next').textContent = nextText.trim();
+        var steps = nextMap[q3 + q4] || [];
+        var stepsEl = document.getElementById('result-steps');
+        stepsEl.innerHTML = '';
+        steps.forEach(function(step) {
+          var li = document.createElement('li');
+          li.textContent = step;
+          stepsEl.appendChild(li);
+        });
 
         // Set LINE button click handler
         var lineBtn = document.getElementById('result-line-btn');
