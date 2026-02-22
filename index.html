@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=DM+Mono:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #0a0a0a;
+      --black: #1a1714;
       --white: #f5f3ef;
       --cream: #ede9e1;
       --accent: #c8502a;
@@ -161,7 +161,7 @@
     }
 
     .hero-right {
-      background: var(--black);
+      background: var(--cream);
       position: relative;
       display: flex;
       align-items: center;
@@ -169,75 +169,258 @@
       overflow: hidden;
     }
 
-    .baton-visual {
+    /* HERO VISUAL */
+    .hero-visual-wrap {
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: 400px;
+      height: 440px;
+    }
+
+    .visual-dot-grid {
+      position: absolute;
+      inset: -80px;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+
+    /* Prototype card — code editor style */
+    .card-proto {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 212px;
+      border-radius: 10px;
+      overflow: hidden;
+      transform: rotate(-4deg);
+      opacity: 0;
+      animation: slideInLeft 0.7s ease 0.8s forwards;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+    }
+
+    .proto-titlebar {
+      background: #2d2926;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .proto-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .proto-dot:nth-child(1) { background: #ff5f56; }
+    .proto-dot:nth-child(2) { background: #ffbd2e; }
+    .proto-dot:nth-child(3) { background: #27c93f; }
+
+    .proto-ai-tag {
+      margin-left: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.07);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    .proto-code {
+      background: #1e1b18;
+      padding: 12px 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5px;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .ck { color: #c8502a; }
+    .cf { color: rgba(255,255,255,0.6); }
+    .cs { color: #7ec878; }
+
+    .proto-alert {
+      background: #1e1b18;
+      border-top: 1px solid rgba(200,80,42,0.3);
+      padding: 8px 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: rgba(200,80,42,0.85);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Production card */
+    .card-prod {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 224px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
+      transform: rotate(3deg);
+      opacity: 0;
+      animation: slideInRight 0.7s ease 1.0s forwards;
+    }
+
+    .prod-topbar {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .prod-topbar-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: #267a46;
+      background: rgba(38,122,70,0.08);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #267a46;
+      animation: pulse-live 1.8s ease infinite;
+    }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .prod-body { padding: 14px; }
+
+    .prod-kpis {
+      display: flex;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .kpi {
+      flex: 1;
+      padding-right: 10px;
+      border-right: 1px solid var(--border);
+      margin-right: 10px;
+    }
+
+    .kpi:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .kpi-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .kpi-val.green { color: #267a46; }
+
+    .kpi-key {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+    }
+
+    .prod-chart-wrap {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 10px 10px 6px;
+      margin-bottom: 10px;
+    }
+
+    .prod-chart-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+
+    .prod-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 40px;
+    }
+
+    .chart-bar {
+      flex: 1;
+      background: var(--border);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .chart-bar.accent { background: var(--accent); }
+
+    .prod-deploy-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--gray);
+    }
+
+    .deploy-ok {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(38,122,70,0.1);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 9px;
+      color: #267a46;
+      flex-shrink: 0;
     }
 
-    .baton-line {
+    /* Arrow connector */
+    .cards-arrow {
       position: absolute;
-      width: 2px;
-      height: 60%;
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
+      z-index: 10;
       opacity: 0;
-      animation: fadeIn 1.2s ease 1s forwards;
-    }
-
-    .baton-node {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .baton-node.top {
-      top: 20%;
-      animation: fadeIn 0.8s ease 1.2s forwards;
-      opacity: 0;
-    }
-
-    .baton-node.bottom {
-      bottom: 20%;
-      animation: fadeIn 0.8s ease 1.5s forwards;
-      opacity: 0;
-    }
-
-    .node-dot {
-      width: 12px;
-      height: 12px;
+      animation: fadeIn 0.5s ease 1.3s forwards;
+      background: var(--white);
+      border: 1px solid var(--border);
       border-radius: 50%;
-      border: 2px solid var(--accent);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .baton-node.bottom .node-dot {
-      background: var(--accent);
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: rotate(-4deg) translateX(-24px); }
+      to   { opacity: 1; transform: rotate(-4deg) translateX(0); }
     }
 
-    .node-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--gray);
-      white-space: nowrap;
-    }
-
-    .baton-word {
-      font-family: 'DM Mono', monospace;
-      font-size: clamp(60px, 8vw, 100px);
-      font-weight: 300;
-      color: rgba(255,255,255,0.06);
-      letter-spacing: -0.02em;
-      position: absolute;
-      user-select: none;
+    @keyframes slideInRight {
+      from { opacity: 0; transform: rotate(3deg) translateX(24px); }
+      to   { opacity: 1; transform: rotate(3deg) translateX(0); }
     }
 
     /* SECTION BASE */
@@ -343,16 +526,16 @@
 
     /* FLOW */
     .flow {
-      background: var(--black);
-      color: var(--white);
+      background: #f0eeeb;
+      color: var(--black);
     }
 
     .flow .section-label {
-      color: var(--accent-light);
+      color: var(--accent);
     }
 
     .flow .section-label::after {
-      background: var(--accent-light);
+      background: var(--accent);
     }
 
     .flow-steps {
@@ -370,7 +553,7 @@
       left: 60px;
       right: 60px;
       height: 1px;
-      background: rgba(255,255,255,0.15);
+      background: rgba(0,0,0,0.12);
     }
 
     .flow-step {
@@ -382,7 +565,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--accent-light);
+      color: var(--accent);
       margin-bottom: 32px;
       display: flex;
       align-items: center;
@@ -408,7 +591,7 @@
 
     .step-body {
       font-size: 13px;
-      color: rgba(255,255,255,0.5);
+      color: var(--gray);
       line-height: 2;
     }
 
@@ -586,6 +769,72 @@
       }
     }
 
+    /* TEAM */
+    .team {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .team-member {
+      background: var(--cream);
+      padding: 56px 48px;
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .team-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: grayscale(20%);
+    }
+
+    .team-info {}
+
+    .team-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .team-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .team-bio {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 2;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      .team-member {
+        padding: 40px 24px;
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+
     /* CASES */
     .cases {
       background: var(--white);
@@ -646,8 +895,8 @@
 
     /* CTA */
     .cta-section {
-      background: var(--black);
-      color: var(--white);
+      background: var(--cream);
+      color: var(--black);
       text-align: center;
       padding: 160px 48px;
       position: relative;
@@ -661,7 +910,7 @@
       transform: translate(-50%, -50%);
       font-family: 'DM Mono', monospace;
       font-size: clamp(80px, 15vw, 200px);
-      color: rgba(255,255,255,0.03);
+      color: rgba(0,0,0,0.04);
       white-space: nowrap;
       pointer-events: none;
       letter-spacing: -0.02em;
@@ -671,7 +920,7 @@
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.2em;
-      color: var(--accent-light);
+      color: var(--accent);
       text-transform: uppercase;
       margin-bottom: 40px;
     }
@@ -687,7 +936,7 @@
 
     .cta-sub {
       font-size: 14px;
-      color: rgba(255,255,255,0.5);
+      color: var(--gray);
       margin-bottom: 56px;
       line-height: 2;
     }
@@ -713,15 +962,15 @@
     .cta-contact {
       margin-top: 32px;
       font-size: 12px;
-      color: rgba(255,255,255,0.3);
+      color: var(--gray);
       font-family: 'DM Mono', monospace;
       letter-spacing: 0.05em;
     }
 
     /* FOOTER */
     footer {
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.08);
+      background: var(--white);
+      border-top: 1px solid var(--border);
       padding: 40px 48px;
       display: flex;
       justify-content: space-between;
@@ -731,13 +980,13 @@
     .footer-logo {
       font-family: 'DM Mono', monospace;
       font-size: 16px;
-      color: rgba(255,255,255,0.4);
+      color: var(--gray);
       letter-spacing: 0.08em;
     }
 
     .footer-copy {
       font-size: 11px;
-      color: rgba(255,255,255,0.2);
+      color: var(--border);
       font-family: 'DM Mono', monospace;
       letter-spacing: 0.05em;
     }
@@ -787,8 +1036,23 @@
       }
 
       .hero-right {
-        height: 280px;
+        height: 320px;
       }
+
+      .hero-visual-wrap {
+        width: 270px;
+        height: 270px;
+      }
+
+      .card-proto,
+      .card-prod {
+        width: 140px;
+        padding: 12px;
+      }
+
+      .wire-img { height: 44px; }
+      .prod-chart { height: 32px; }
+      .prod-stat-val { font-size: 12px; }
 
       section {
         padding: 80px 24px;
@@ -856,16 +1120,71 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="baton-visual">
-        <div class="baton-word">Baton</div>
-        <div class="baton-line"></div>
-        <div class="baton-node top">
-          <div class="node-dot"></div>
-          <div class="node-label">Prototype</div>
+      <div class="hero-visual-wrap">
+        <div class="visual-dot-grid"></div>
+
+        <!-- Prototype card: code editor -->
+        <div class="card-proto">
+          <div class="proto-titlebar">
+            <span class="proto-dot"></span>
+            <span class="proto-dot"></span>
+            <span class="proto-dot"></span>
+            <span class="proto-ai-tag">AI Generated</span>
+          </div>
+          <div class="proto-code">
+            <div><span class="ck">export default</span> <span class="cf">function</span> App() {</div>
+            <div>&nbsp;&nbsp;<span class="cf">return</span> (</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cf">div</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cf">h1</span>&gt;<span class="cs">Hello</span>&lt;/<span class="cf">h1</span>&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="cf">div</span>&gt;</div>
+            <div>&nbsp;&nbsp;)</div>
+            <div>}</div>
+          </div>
+          <div class="proto-alert">⚠&nbsp; 未デプロイ</div>
         </div>
-        <div class="baton-node bottom">
-          <div class="node-label">Production</div>
-          <div class="node-dot"></div>
+
+        <!-- Arrow -->
+        <div class="cards-arrow">→</div>
+
+        <!-- Production card: dashboard -->
+        <div class="card-prod">
+          <div class="prod-topbar">
+            <span class="prod-topbar-name">Baton</span>
+            <span class="live-badge"><span class="live-dot"></span>Live</span>
+          </div>
+          <div class="prod-body">
+            <div class="prod-kpis">
+              <div class="kpi">
+                <div class="kpi-val">1.2k</div>
+                <div class="kpi-key">USERS</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-val green">+23%</div>
+                <div class="kpi-key">MOM</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-val">99.9%</div>
+                <div class="kpi-key">UPTIME</div>
+              </div>
+            </div>
+            <div class="prod-chart-wrap">
+              <div class="prod-chart-title">MONTHLY USERS</div>
+              <div class="prod-chart">
+                <div class="chart-bar" style="height:25%"></div>
+                <div class="chart-bar" style="height:38%"></div>
+                <div class="chart-bar" style="height:44%"></div>
+                <div class="chart-bar" style="height:55%"></div>
+                <div class="chart-bar" style="height:48%"></div>
+                <div class="chart-bar" style="height:72%"></div>
+                <div class="chart-bar" style="height:65%"></div>
+                <div class="chart-bar accent" style="height:90%"></div>
+              </div>
+            </div>
+            <div class="prod-deploy-row">
+              <div class="deploy-ok">✓</div>
+              Deployed 2h ago · Production
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -960,6 +1279,21 @@
         <div class="why-title">上流から<br>一緒に考える</div>
         <div class="why-body">何を作るべきかの整理から、UX設計、開発、運用まで。体験設計のプロが伴走します。</div>
       </div>
+      <div class="why-item reveal">
+        <div class="why-icon">AI</div>
+        <div class="why-title">AIネイティブな<br>開発体制</div>
+        <div class="why-body">Cursor・Claude・v0を日常的に使いこなすチームが担当。AI時代ならではのスピードとコストを実現します。</div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">JP</div>
+        <div class="why-title">日本語で完結する<br>プロジェクト管理</div>
+        <div class="why-body">日本人ディレクターが一貫して窓口を担当。オフショアの品質をそのままに、認識のズレを防ぎます。</div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">∞</div>
+        <div class="why-title">リリース後も<br>走り続ける</div>
+        <div class="why-body">出してからが本番。バグ対応・機能追加・ユーザーフィードバックの反映まで、長期パートナーとして伴走します。</div>
+      </div>
     </div>
   </section>
 
@@ -1015,6 +1349,33 @@
     <p class="pricing-note reveal">※ すべてのプランに初回無料相談が含まれます。プロジェクトの内容に応じて最適なプランをご提案します。</p>
   </section>
 
+  <!-- TEAM -->
+  <section class="team">
+    <div class="section-label reveal">チーム</div>
+    <div class="team-grid">
+      <div class="team-member reveal">
+        <img src="images/ikenishi.jpg" alt="池西 哲郎" class="team-photo">
+        <div class="team-info">
+          <div class="team-role">代表 / 体験設計リード</div>
+          <div class="team-name">池西 哲郎</div>
+          <p class="team-bio">
+            Royal College of Art（英国）修了後、Interbrand にてブランドコンサルティングに従事。帰国後、Blabo（CDO）／NearMe（CXO）として新規事業・デジタルプロダクトの立ち上げを多数リード。新規事業の0→1・PoC→プロダクト化、Web・アプリのUX／プロダクト設計、事業・体験・技術を横断した構想設計が専門。「何を作るべきか」を定義し、使われる形まで持っていく。
+          </p>
+        </div>
+      </div>
+      <div class="team-member reveal">
+        <img src="images/kakui.jpg" alt="角井 勇哉" class="team-photo">
+        <div class="team-info">
+          <div class="team-role">共同代表 / テクニカルリード</div>
+          <div class="team-name">角井 勇哉</div>
+          <p class="team-bio">
+            千葉大学大学院工学研究科卒。楽天株式会社にて広告システムの開発に従事。その後、株式会社Blabo 取締役CTOとしてマーケティング関連プロダクトを開発し、CCCへのバイアウトを経験。複数のスタートアップへの技術顧問を経て、2021年より株式会社Datable 取締役CTO。AI活用とオフショア開発を武器に、高速・高品質な開発をリードする。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CASES -->
   <section class="cases">
     <div class="section-label reveal">実績</div>
@@ -1024,7 +1385,7 @@
     <div class="cases-list">
       <div class="case-item reveal">
         <div class="case-tag">Mobility</div>
-        <div class="case-title">Hondaのカーシェアプラットフォーム<br>「Lymo」の設計・開発・運用</div>
+        <div class="case-title">大手自動車メーカーの<br>カーシェアプラットフォーム設計・開発・運用</div>
         <div class="case-meta">
           <span>Web + App</span>
           <span>設計〜運用</span>
@@ -1034,24 +1395,21 @@
         <div class="case-tag">HealthCare</div>
         <div class="case-title">介護現場のケアプランデータ<br>連携システム開発</div>
         <div class="case-meta">
-          <span>14ヶ月</span>
-          <span>PHP + Vue.js + OCR</span>
+          <span>企画〜保守</span>
         </div>
       </div>
       <div class="case-item reveal">
         <div class="case-tag">Matching</div>
         <div class="case-title">介護ドライバーと施設を<br>つなぐマッチングサービス</div>
         <div class="case-meta">
-          <span>6ヶ月</span>
-          <span>PHP + Vue.js + LINE</span>
+          <span>企画〜運用</span>
         </div>
       </div>
       <div class="case-item reveal">
         <div class="case-tag">Internal DX</div>
         <div class="case-title">全国小売店舗向け<br>工事現場業務管理システム</div>
         <div class="case-meta">
-          <span>8ヶ月</span>
-          <span>Ruby on Rails + React</span>
+          <span>設計〜保守</span>
         </div>
       </div>
     </div>
