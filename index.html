@@ -1355,15 +1355,92 @@
       color: var(--accent);
     }
 
-    .quiz-submit {
-      margin-top: 8px;
+    .quiz-progress-wrap {
+      margin-bottom: 32px;
+    }
+
+    .quiz-progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .quiz-step-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--gray);
+    }
+
+    .quiz-progress-track {
+      height: 2px;
+      background: var(--border);
       width: 100%;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+
+    .quiz-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      align-items: stretch;
+    }
+
+    .quiz-prev {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--gray);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 14px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .quiz-prev:hover {
+      border-color: var(--black);
+      color: var(--black);
+    }
+
+    .quiz-next {
+      flex: 1;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      padding: 14px;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+
+    .quiz-next:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    .quiz-next:not(:disabled):hover {
+      background: #333;
+    }
+
+    .quiz-submit {
+      flex: 1;
       background: var(--accent);
       color: var(--white);
       border: none;
-      padding: 16px 40px;
+      padding: 14px;
       font-family: 'Noto Sans JP', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
       letter-spacing: 0.08em;
       cursor: pointer;
@@ -1888,8 +1965,8 @@
       </p>
       <p class="hero-note">初回診断、無料です</p>
       <div class="hero-cta-group">
-        <a href="#diagnosis" class="btn-primary">無料でアプリを診断する</a>
-        <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEで話す</a>
+        <a href="#diagnosis" class="btn-primary">本番化できるか、診断する</a>
+        <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEチャットで相談</a>
       </div>
     </div>
     <div class="hero-right">
@@ -2271,27 +2348,75 @@
 
       <!-- QUIZ -->
       <div id="quiz">
-        <div class="quiz-q">
+        <div class="quiz-progress-wrap">
+          <div class="quiz-progress-header">
+            <span class="quiz-step-label" id="quiz-step-label">STEP 1 / 5</span>
+          </div>
+          <div class="quiz-progress-track">
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:20%"></div>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="0">
           <div class="quiz-q-label">Q1</div>
+          <div class="quiz-q-text">どんなアプリですか？</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q1" value="web"><span>Webアプリ / SaaS</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="mobile"><span>スマホアプリ</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="internal"><span>社内ツール・業務系</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="lp"><span>LP / 情報サイト</span></label>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="1">
+          <div class="quiz-q-label">Q2</div>
+          <div class="quiz-q-text">何を使って作りましたか？</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q2" value="ai-ide"><span>Cursor / Claude / ChatGPT</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="ai-gen"><span>v0 / Bolt / Lovable</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="nocode"><span>No-code（Webflow, Bubble等）</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="code"><span>自分でコードを書いた</span></label>
+          </div>
+        </div>
+
+        <div class="quiz-step" data-step="2">
+          <div class="quiz-q-label">Q3</div>
           <div class="quiz-q-text">どこまで作れていますか？</div>
           <div class="quiz-options">
-            <label class="quiz-option"><input type="radio" name="q1" value="A"><span>LPだけ</span></label>
-            <label class="quiz-option"><input type="radio" name="q1" value="B"><span>ログインまで動く</span></label>
-            <label class="quiz-option"><input type="radio" name="q1" value="C"><span>決済手前まで</span></label>
-            <label class="quiz-option"><input type="radio" name="q1" value="D"><span>一応全部動く</span></label>
+            <label class="quiz-option"><input type="radio" name="q3" value="A"><span>LPだけ</span></label>
+            <label class="quiz-option"><input type="radio" name="q3" value="B"><span>ログインまで動く</span></label>
+            <label class="quiz-option"><input type="radio" name="q3" value="C"><span>決済手前まで</span></label>
+            <label class="quiz-option"><input type="radio" name="q3" value="D"><span>一応全部動く</span></label>
           </div>
         </div>
-        <div class="quiz-q">
-          <div class="quiz-q-label">Q2</div>
+
+        <div class="quiz-step" data-step="3">
+          <div class="quiz-q-label">Q4</div>
           <div class="quiz-q-text">一番困っていることは？</div>
           <div class="quiz-options">
-            <label class="quiz-option"><input type="radio" name="q2" value="1"><span>インフラ・デプロイ</span></label>
-            <label class="quiz-option"><input type="radio" name="q2" value="2"><span>認証・セキュリティ</span></label>
-            <label class="quiz-option"><input type="radio" name="q2" value="3"><span>UX・デザイン</span></label>
-            <label class="quiz-option"><input type="radio" name="q2" value="4"><span>全体的に不安</span></label>
+            <label class="quiz-option"><input type="radio" name="q4" value="1"><span>インフラ・デプロイ</span></label>
+            <label class="quiz-option"><input type="radio" name="q4" value="2"><span>認証・セキュリティ</span></label>
+            <label class="quiz-option"><input type="radio" name="q4" value="3"><span>UX・デザイン</span></label>
+            <label class="quiz-option"><input type="radio" name="q4" value="4"><span>全体的に不安</span></label>
           </div>
         </div>
-        <button class="quiz-submit" id="quiz-submit" disabled>診断する →</button>
+
+        <div class="quiz-step" data-step="4">
+          <div class="quiz-q-label">Q5</div>
+          <div class="quiz-q-text">いつまでにリリースしたいですか？</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q5" value="asap"><span>できるだけ早く（1ヶ月以内）</span></label>
+            <label class="quiz-option"><input type="radio" name="q5" value="soon"><span>1〜3ヶ月以内</span></label>
+            <label class="quiz-option"><input type="radio" name="q5" value="medium"><span>3〜6ヶ月以内</span></label>
+            <label class="quiz-option"><input type="radio" name="q5" value="tbd"><span>まだ決めていない</span></label>
+          </div>
+        </div>
+
+        <div class="quiz-nav">
+          <button class="quiz-prev" id="quiz-prev">← 戻る</button>
+          <button class="quiz-next" id="quiz-next" disabled>次へ →</button>
+          <button class="quiz-submit" id="quiz-submit" disabled>診断する →</button>
+        </div>
       </div>
 
       <!-- RESULT -->
@@ -2312,7 +2437,7 @@
           <div class="result-next-value" id="result-next"></div>
         </div>
         <div class="result-cta-group">
-          <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="result-btn-line">この結果をもとにLINEで話す</a>
+          <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="result-btn-line">この結果をもとにLINEチャットで相談</a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
         </div>
         <button class="quiz-retry" id="quiz-retry">もう一度診断する</button>
@@ -2380,9 +2505,9 @@
 
     // Diagnosis quiz
     (function () {
-      var status = { A: '構想・初期段階', B: '基本機能完成', C: 'PoC完成型', D: 'プロトタイプ完成型' };
-      var timeline = { A: '12〜16週間', B: '8〜12週間', C: '6〜8週間', D: '4〜6週間' };
-      var next = {
+      var statusMap = { A: '構想・初期段階', B: '基本機能完成', C: 'PoC完成型', D: 'プロトタイプ完成型' };
+      var timelineMap = { A: '12〜16週間', B: '8〜12週間', C: '6〜8週間', D: '4〜6週間' };
+      var nextMap = {
         A1: '本番を見据えた技術スタックの整理と、インフラ設計から始めましょう。',
         A2: 'MVPを固めながら、セキュリティを考慮した設計を一から組みます。',
         A3: 'コアバリューを整理し、UX設計と開発を並走させて進めます。',
@@ -2400,37 +2525,80 @@
         D3: 'プロダクトは完成しています。UXを磨けば、すぐリリースできます。',
         D4: 'ほぼ出せる状態です。一緒にレビューして、最終判断を行います。'
       };
+      var urgencyMap = {
+        asap: 'スピードを最優先に動きます。',
+        soon: '1〜3ヶ月のスケジュールで進めます。',
+        medium: '余裕を持ったスケジュールで進めましょう。',
+        tbd: 'まずは方向性を整理するところから始めましょう。'
+      };
 
-      var q1 = null, q2 = null;
       var quiz = document.getElementById('quiz');
       var result = document.getElementById('quiz-result');
+      var prevBtn = document.getElementById('quiz-prev');
+      var nextBtn = document.getElementById('quiz-next');
       var submitBtn = document.getElementById('quiz-submit');
-      if (!quiz || !result || !submitBtn) return;
+      var progressFill = document.getElementById('quiz-progress-fill');
+      var stepLabel = document.getElementById('quiz-step-label');
+      if (!quiz || !result) return;
 
-      document.querySelectorAll('input[name="q1"]').forEach(function (r) {
-        r.addEventListener('change', function () { q1 = this.value; check(); });
-      });
-      document.querySelectorAll('input[name="q2"]').forEach(function (r) {
-        r.addEventListener('change', function () { q2 = this.value; check(); });
+      var steps = Array.from(quiz.querySelectorAll('.quiz-step'));
+      var currentStep = 0;
+      var answers = [null, null, null, null, null];
+
+      // Init: show only first step
+      steps.forEach(function (s, i) { s.style.display = i === 0 ? 'block' : 'none'; });
+      prevBtn.style.display = 'none';
+      submitBtn.style.display = 'none';
+
+      // Wire radios
+      steps.forEach(function (step, idx) {
+        step.querySelectorAll('input[type="radio"]').forEach(function (r) {
+          r.addEventListener('change', function () {
+            answers[idx] = this.value;
+            if (idx < 4) nextBtn.disabled = false;
+            else submitBtn.disabled = false;
+          });
+        });
       });
 
-      function check() { submitBtn.disabled = !(q1 && q2); }
+      function goToStep(n) {
+        steps[currentStep].style.display = 'none';
+        steps[n].style.display = 'block';
+        currentStep = n;
+        if (progressFill) progressFill.style.width = ((n + 1) / 5 * 100) + '%';
+        if (stepLabel) stepLabel.textContent = 'STEP ' + (n + 1) + ' / 5';
+        prevBtn.style.display = n === 0 ? 'none' : '';
+        if (n === 4) {
+          nextBtn.style.display = 'none';
+          submitBtn.style.display = '';
+          submitBtn.disabled = !answers[4];
+        } else {
+          nextBtn.style.display = '';
+          submitBtn.style.display = 'none';
+          nextBtn.disabled = !answers[n];
+        }
+      }
+
+      nextBtn.addEventListener('click', function () { if (answers[currentStep]) goToStep(currentStep + 1); });
+      prevBtn.addEventListener('click', function () { if (currentStep > 0) goToStep(currentStep - 1); });
 
       submitBtn.addEventListener('click', function () {
-        document.getElementById('result-status').textContent = status[q1];
-        document.getElementById('result-timeline').textContent = timeline[q1];
-        document.getElementById('result-next').textContent = next[q1 + q2] || '';
+        var q3 = answers[2], q4 = answers[3], q5 = answers[4];
+        document.getElementById('result-status').textContent = statusMap[q3] || '';
+        document.getElementById('result-timeline').textContent = timelineMap[q3] || '';
+        var nextText = (nextMap[q3 + q4] || '') + ' ' + (urgencyMap[q5] || '');
+        document.getElementById('result-next').textContent = nextText.trim();
         quiz.style.display = 'none';
         result.style.display = 'block';
         result.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
 
       document.getElementById('quiz-retry').addEventListener('click', function () {
-        q1 = null; q2 = null;
-        document.querySelectorAll('input[name="q1"], input[name="q2"]').forEach(function (r) { r.checked = false; });
-        submitBtn.disabled = true;
+        answers = [null, null, null, null, null];
+        quiz.querySelectorAll('input[type="radio"]').forEach(function (r) { r.checked = false; });
         result.style.display = 'none';
         quiz.style.display = 'block';
+        goToStep(0);
       });
     })();
 
