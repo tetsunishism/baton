@@ -2631,7 +2631,7 @@
         var backdrop = document.getElementById('quiz-toast-backdrop');
         var msgEl = document.getElementById('quiz-toast-msg');
         if (!toast) return;
-        if (msgEl) msgEl.textContent = msg;
+        if (msgEl) msgEl.innerHTML = msg.replace(/\n/g, '<br>');
         toast.classList.add('show');
         if (backdrop) backdrop.classList.add('show');
         setTimeout(function () {
@@ -2697,10 +2697,6 @@
         var nextText = (nextMap[q3 + q4] || '') + ' ' + (urgencyMap[q5] || '');
         document.getElementById('result-next').textContent = nextText.trim();
 
-        // Set form URL with pre-filled answers
-        var formBtn = document.getElementById('result-form-btn');
-        if (formBtn) formBtn.href = buildFormUrl(answers);
-
         // Set LINE button click handler
         var lineBtn = document.getElementById('result-line-btn');
         if (lineBtn) {
@@ -2708,8 +2704,22 @@
             e.preventDefault();
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
-              showToast('回答内容をコピーしました。LINEに貼り付けて送ってください。');
-              setTimeout(function () { window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener'); }, 600);
+              showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
+              setTimeout(function () { window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener'); }, 800);
+            });
+          };
+        }
+
+        // Set form button click handler
+        var formBtn = document.getElementById('result-form-btn');
+        if (formBtn) {
+          var formUrl = buildFormUrl(answers);
+          formBtn.onclick = function (e) {
+            e.preventDefault();
+            var summary = buildSummaryText(answers);
+            copyText(summary).then(function () {
+              showToast('診断結果をコピーしました。\nフォームの詳細欄に貼り付けてください。');
+              setTimeout(function () { window.open(formUrl, '_blank', 'noopener'); }, 800);
             });
           };
         }
