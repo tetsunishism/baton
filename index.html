@@ -579,6 +579,84 @@
       max-width: 600px;
     }
 
+    /* FOR WHOM */
+    .for-whom {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    .for-whom-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      line-height: 1.7;
+      margin-bottom: 56px;
+      letter-spacing: 0.02em;
+    }
+
+    .for-whom-title em {
+      font-style: normal;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .for-whom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .for-whom-card {
+      background: var(--cream);
+      padding: 48px 40px;
+    }
+
+    .for-whom-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .for-whom-name {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .for-whom-list {
+      list-style: none;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .for-whom-list li {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 2.2;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .for-whom-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .for-whom-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* FLOW */
     .flow {
       background: #f0eeeb;
@@ -1330,7 +1408,7 @@
     <div class="hero-left">
       <p class="hero-eyebrow">Prototype <span>→</span> Production</p>
       <h1 class="hero-pain">
-        作れた。<br>
+        アプリ、作れた。<br>
         でも、<em>出せてない。</em>
       </h1>
       <p class="hero-tagline">
@@ -1450,6 +1528,47 @@
         「ゼロから作ります」ではなく、「あなたが作ったものを活かします」。<br>
         体験設計とAI開発のプロフェッショナルが、プロトタイプのバトンを受け取り、世に出せる形に育てます。
       </p>
+    </div>
+  </section>
+
+  <!-- FOR WHOM -->
+  <section class="for-whom">
+    <div class="section-label reveal">こんな方に</div>
+    <h2 class="for-whom-title reveal">
+      技術よりも、<em>アイデアと実行力</em>で<br>
+      勝負したい方のために。
+    </h2>
+    <div class="for-whom-grid">
+      <div class="for-whom-card reveal">
+        <div class="for-whom-tag">Business</div>
+        <div class="for-whom-name">事業アイデアを持つ<br>ビジネスパーソン</div>
+        <ul class="for-whom-list">
+          <li>Cursor・Claude でプロトタイプは動いた</li>
+          <li>認証・決済・インフラの壁で止まっている</li>
+          <li>エンジニア採用より先に、まず出してみたい</li>
+          <li>事業検証にスピードが必要</li>
+        </ul>
+      </div>
+      <div class="for-whom-card reveal">
+        <div class="for-whom-tag">Design</div>
+        <div class="for-whom-name">プロトタイプまで作れる<br>デザイナー・クリエイター</div>
+        <ul class="for-whom-list">
+          <li>Figma・v0でUI/UXは設計できる</li>
+          <li>バックエンドや本番環境は専門外</li>
+          <li>デザインの意図を活かして実装してほしい</li>
+          <li>自分の手でリリースまで持っていきたい</li>
+        </ul>
+      </div>
+      <div class="for-whom-card reveal">
+        <div class="for-whom-tag">Solopreneur</div>
+        <div class="for-whom-name">ひとりで事業を動かす<br>ソロプレナー・個人開発者</div>
+        <ul class="for-whom-list">
+          <li>プロダクトのコアには強い</li>
+          <li>セキュリティ・運用が手薄になりがち</li>
+          <li>信頼できる技術パートナーが欲しい</li>
+          <li>コアに集中しながらプロダクトを育てたい</li>
+        </ul>
+      </div>
     </div>
   </section>
 
