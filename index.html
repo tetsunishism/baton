@@ -1248,6 +1248,71 @@
       letter-spacing: 0.05em;
     }
 
+    /* STEP NDA NOTE */
+    .step-nda {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    /* TRUST GUARANTEE */
+    .trust-guarantee {
+      background: var(--black);
+      padding: 56px 48px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .trust-guarantee-inner {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: 640px;
+      width: 100%;
+    }
+
+    .trust-guarantee-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--accent-light);
+      border: 1px solid var(--accent-light);
+      padding: 10px 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .trust-guarantee-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
+    }
+
+    .trust-guarantee-body {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.9;
+    }
+
+    @media (max-width: 768px) {
+      .trust-guarantee {
+        padding: 48px 24px;
+      }
+
+      .trust-guarantee-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+    }
+
     /* HORIZONTAL SCROLL — mobile */
     .hscroll-nav { display: none; }
 
@@ -1698,6 +1763,7 @@
             <div class="step-num">Step 01</div>
             <div class="step-title">プロトタイプを<br>見せてください</div>
             <div class="step-body">作ったもの、やりたいこと、何でも持ってきてください。まず話を聞かせてください。</div>
+            <div class="step-nda">NDA締結 — ご相談前に秘密保持契約を結びます</div>
           </div>
           <div class="flow-step reveal">
             <div class="step-num">Step 02</div>
@@ -1893,6 +1959,17 @@
       </div>
     </div>
   </section>
+
+  <!-- TRUST GUARANTEE -->
+  <div class="trust-guarantee">
+    <div class="trust-guarantee-inner">
+      <div class="trust-guarantee-badge">NDA</div>
+      <div>
+        <div class="trust-guarantee-title">アイデアは、守ります。</div>
+        <div class="trust-guarantee-body">ご相談前に秘密保持契約を締結します。お話しいただいた内容・アイデアが外部に出ることは一切ありません。</div>
+      </div>
+    </div>
+  </div>
 
   <!-- CTA -->
   <section class="cta-section" id="contact">
