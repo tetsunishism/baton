@@ -1248,6 +1248,113 @@
       letter-spacing: 0.05em;
     }
 
+    /* HORIZONTAL SCROLL — mobile */
+    .hscroll-nav { display: none; }
+
+    @media (max-width: 768px) {
+      .hscroll-overflow {
+        overflow: hidden;
+        margin: 0 -24px;
+      }
+
+      .hscroll-track {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-left: 24px;
+        gap: 12px !important;
+        background: transparent !important;
+        grid-template-columns: unset !important;
+      }
+
+      .hscroll-track::-webkit-scrollbar { display: none; }
+
+      .hscroll-track > * {
+        flex: 0 0 84% !important;
+        scroll-snap-align: start;
+        min-width: 0;
+      }
+
+      .flow-steps.hscroll-track .flow-step {
+        background: rgba(255,255,255,0.55);
+        border: 1px solid rgba(0,0,0,0.08);
+        padding: 28px 20px !important;
+      }
+
+      .why-grid.hscroll-track .why-item {
+        border: 1px solid var(--border);
+        background: var(--cream);
+      }
+
+      .for-whom-grid.hscroll-track .for-whom-card {
+        border: 1px solid var(--border);
+      }
+
+      .hscroll-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 20px 0 0;
+      }
+
+      .hscroll-dots {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .hscroll-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--border);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: width 0.25s ease, background 0.25s ease, border-radius 0.25s ease;
+        flex-shrink: 0;
+      }
+
+      .hscroll-dot.active {
+        background: var(--accent);
+        width: 20px;
+        border-radius: 2px;
+      }
+
+      .hscroll-arrow {
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--black);
+        font-family: 'DM Mono', monospace;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s, border-color 0.2s;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      .hscroll-arrow:not(:disabled):active {
+        background: var(--accent);
+        color: var(--white);
+        border-color: var(--accent);
+      }
+
+      .hscroll-arrow:disabled {
+        opacity: 0.2;
+        cursor: default;
+      }
+    }
+
     /* ANIMATIONS */
     @keyframes fadeUp {
       from {
@@ -1417,7 +1524,7 @@
         開発・リリース・運用まで、まるごと。
       </p>
       <div class="hero-cta-group">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="btn-primary">まず相談してみる</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="btn-primary">フォームから相談する</a>
         <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEで相談</a>
       </div>
     </div>
@@ -1538,36 +1645,45 @@
       技術よりも、<em>アイデアと実行力</em>で<br>
       勝負したい方のために。
     </h2>
-    <div class="for-whom-grid">
-      <div class="for-whom-card reveal">
-        <div class="for-whom-tag">Business</div>
-        <div class="for-whom-name">事業アイデアを持つ<br>ビジネスパーソン</div>
-        <ul class="for-whom-list">
-          <li>Cursor・Claude でプロトタイプは動いた</li>
-          <li>認証・決済・インフラの壁で止まっている</li>
-          <li>エンジニア採用より先に、まず出してみたい</li>
-          <li>事業検証にスピードが必要</li>
-        </ul>
+    <div class="hscroll-block">
+      <div class="hscroll-overflow">
+        <div class="for-whom-grid hscroll-track">
+          <div class="for-whom-card reveal">
+            <div class="for-whom-tag">Business</div>
+            <div class="for-whom-name">事業アイデアを持つ<br>ビジネスパーソン</div>
+            <ul class="for-whom-list">
+              <li>Cursor・Claude でプロトタイプは動いた</li>
+              <li>認証・決済・インフラの壁で止まっている</li>
+              <li>エンジニア採用より先に、まず出してみたい</li>
+              <li>事業検証にスピードが必要</li>
+            </ul>
+          </div>
+          <div class="for-whom-card reveal">
+            <div class="for-whom-tag">Design</div>
+            <div class="for-whom-name">プロトタイプまで作れる<br>デザイナー・クリエイター</div>
+            <ul class="for-whom-list">
+              <li>Figma・v0でUI/UXは設計できる</li>
+              <li>バックエンドや本番環境は専門外</li>
+              <li>デザインの意図を活かして実装してほしい</li>
+              <li>自分の手でリリースまで持っていきたい</li>
+            </ul>
+          </div>
+          <div class="for-whom-card reveal">
+            <div class="for-whom-tag">Solopreneur</div>
+            <div class="for-whom-name">ひとりで事業を動かす<br>ソロプレナー・個人開発者</div>
+            <ul class="for-whom-list">
+              <li>プロダクトのコアには強い</li>
+              <li>セキュリティ・運用が手薄になりがち</li>
+              <li>信頼できる技術パートナーが欲しい</li>
+              <li>コアに集中しながらプロダクトを育てたい</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="for-whom-card reveal">
-        <div class="for-whom-tag">Design</div>
-        <div class="for-whom-name">プロトタイプまで作れる<br>デザイナー・クリエイター</div>
-        <ul class="for-whom-list">
-          <li>Figma・v0でUI/UXは設計できる</li>
-          <li>バックエンドや本番環境は専門外</li>
-          <li>デザインの意図を活かして実装してほしい</li>
-          <li>自分の手でリリースまで持っていきたい</li>
-        </ul>
-      </div>
-      <div class="for-whom-card reveal">
-        <div class="for-whom-tag">Solopreneur</div>
-        <div class="for-whom-name">ひとりで事業を動かす<br>ソロプレナー・個人開発者</div>
-        <ul class="for-whom-list">
-          <li>プロダクトのコアには強い</li>
-          <li>セキュリティ・運用が手薄になりがち</li>
-          <li>信頼できる技術パートナーが欲しい</li>
-          <li>コアに集中しながらプロダクトを育てたい</li>
-        </ul>
+      <div class="hscroll-nav">
+        <button class="hscroll-arrow hscroll-prev" aria-label="前へ">←</button>
+        <div class="hscroll-dots"></div>
+        <button class="hscroll-arrow hscroll-next" aria-label="次へ">→</button>
       </div>
     </div>
   </section>
@@ -1575,26 +1691,35 @@
   <!-- FLOW -->
   <section class="flow">
     <div class="section-label reveal">進め方</div>
-    <div class="flow-steps">
-      <div class="flow-step reveal">
-        <div class="step-num">Step 01</div>
-        <div class="step-title">プロトタイプを<br>見せてください</div>
-        <div class="step-body">作ったもの、やりたいこと、何でも持ってきてください。まず話を聞かせてください。</div>
+    <div class="hscroll-block">
+      <div class="hscroll-overflow">
+        <div class="flow-steps hscroll-track">
+          <div class="flow-step reveal">
+            <div class="step-num">Step 01</div>
+            <div class="step-title">プロトタイプを<br>見せてください</div>
+            <div class="step-body">作ったもの、やりたいこと、何でも持ってきてください。まず話を聞かせてください。</div>
+          </div>
+          <div class="flow-step reveal">
+            <div class="step-num">Step 02</div>
+            <div class="step-title">本番化の<br>方針を決める</div>
+            <div class="step-body">何を活かして、何を作り直すか。費用と期間の見積もりを出します。</div>
+          </div>
+          <div class="flow-step reveal">
+            <div class="step-num">Step 03</div>
+            <div class="step-title">開発・<br>リリース</div>
+            <div class="step-body">日本人ディレクターとAI活用の開発チームが、スピーディーに本番環境を構築します。</div>
+          </div>
+          <div class="flow-step reveal">
+            <div class="step-num">Step 04</div>
+            <div class="step-title">運用まで<br>お任せ</div>
+            <div class="step-body">バグ対応、機能追加、ユーザーフィードバックの反映。出してからも一緒に走ります。</div>
+          </div>
+        </div>
       </div>
-      <div class="flow-step reveal">
-        <div class="step-num">Step 02</div>
-        <div class="step-title">本番化の<br>方針を決める</div>
-        <div class="step-body">何を活かして、何を作り直すか。費用と期間の見積もりを出します。</div>
-      </div>
-      <div class="flow-step reveal">
-        <div class="step-num">Step 03</div>
-        <div class="step-title">開発・<br>リリース</div>
-        <div class="step-body">日本人ディレクターとAI活用の開発チームが、スピーディーに本番環境を構築します。</div>
-      </div>
-      <div class="flow-step reveal">
-        <div class="step-num">Step 04</div>
-        <div class="step-title">運用まで<br>お任せ</div>
-        <div class="step-body">バグ対応、機能追加、ユーザーフィードバックの反映。出してからも一緒に走ります。</div>
+      <div class="hscroll-nav">
+        <button class="hscroll-arrow hscroll-prev" aria-label="前へ">←</button>
+        <div class="hscroll-dots"></div>
+        <button class="hscroll-arrow hscroll-next" aria-label="次へ">→</button>
       </div>
     </div>
   </section>
@@ -1602,36 +1727,45 @@
   <!-- WHY -->
   <section class="why">
     <div class="section-label reveal">選ばれる理由</div>
-    <div class="why-grid">
-      <div class="why-item reveal">
-        <div class="why-icon">→</div>
-        <div class="why-title">プロトタイプを<br>活かせる</div>
-        <div class="why-body">AIで作ったコードを読んで、本番化できるチームです。「作り直し」をできる限り避けます。</div>
+    <div class="hscroll-block">
+      <div class="hscroll-overflow">
+        <div class="why-grid hscroll-track">
+          <div class="why-item reveal">
+            <div class="why-icon">→</div>
+            <div class="why-title">プロトタイプを<br>活かせる</div>
+            <div class="why-body">AIで作ったコードを読んで、本番化できるチームです。「作り直し」をできる限り避けます。</div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon">⚡</div>
+            <div class="why-title">圧倒的に<br>速くて安い</div>
+            <div class="why-body">AI活用とオフショア開発により、一般的な開発会社の50〜70%のコストで、スピーディーに進めます。</div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon">○</div>
+            <div class="why-title">上流から<br>一緒に考える</div>
+            <div class="why-body">何を作るべきかの整理から、UX設計、開発、運用まで。体験設計のプロが伴走します。</div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon">AI</div>
+            <div class="why-title">AIネイティブな<br>開発体制</div>
+            <div class="why-body">Cursor・Claude・v0を日常的に使いこなすチームが担当。AI時代ならではのスピードとコストを実現します。</div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon">JP</div>
+            <div class="why-title">日本語で完結する<br>プロジェクト管理</div>
+            <div class="why-body">日本人ディレクターが一貫して窓口を担当。オフショアの品質をそのままに、認識のズレを防ぎます。</div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon">∞</div>
+            <div class="why-title">リリース後も<br>走り続ける</div>
+            <div class="why-body">出してからが本番。バグ対応・機能追加・ユーザーフィードバックの反映まで、長期パートナーとして伴走します。</div>
+          </div>
+        </div>
       </div>
-      <div class="why-item reveal">
-        <div class="why-icon">⚡</div>
-        <div class="why-title">圧倒的に<br>速くて安い</div>
-        <div class="why-body">AI活用とオフショア開発により、一般的な開発会社の50〜70%のコストで、スピーディーに進めます。</div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon">○</div>
-        <div class="why-title">上流から<br>一緒に考える</div>
-        <div class="why-body">何を作るべきかの整理から、UX設計、開発、運用まで。体験設計のプロが伴走します。</div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon">AI</div>
-        <div class="why-title">AIネイティブな<br>開発体制</div>
-        <div class="why-body">Cursor・Claude・v0を日常的に使いこなすチームが担当。AI時代ならではのスピードとコストを実現します。</div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon">JP</div>
-        <div class="why-title">日本語で完結する<br>プロジェクト管理</div>
-        <div class="why-body">日本人ディレクターが一貫して窓口を担当。オフショアの品質をそのままに、認識のズレを防ぎます。</div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon">∞</div>
-        <div class="why-title">リリース後も<br>走り続ける</div>
-        <div class="why-body">出してからが本番。バグ対応・機能追加・ユーザーフィードバックの反映まで、長期パートナーとして伴走します。</div>
+      <div class="hscroll-nav">
+        <button class="hscroll-arrow hscroll-prev" aria-label="前へ">←</button>
+        <div class="hscroll-dots"></div>
+        <button class="hscroll-arrow hscroll-next" aria-label="次へ">→</button>
       </div>
     </div>
   </section>
@@ -1802,6 +1936,59 @@
     }, { threshold: 0.1 });
 
     reveals.forEach(el => observer.observe(el));
+
+    // Horizontal scroll — mobile
+    (function () {
+      if (window.innerWidth > 768) return;
+      document.querySelectorAll('.hscroll-block').forEach(function (block) {
+        var track = block.querySelector('.hscroll-track');
+        var dotsWrap = block.querySelector('.hscroll-dots');
+        var prevBtn = block.querySelector('.hscroll-prev');
+        var nextBtn = block.querySelector('.hscroll-next');
+        if (!track || !dotsWrap) return;
+
+        var items = Array.from(track.children);
+        var count = items.length;
+
+        // Build dots
+        items.forEach(function (_, i) {
+          var dot = document.createElement('button');
+          dot.className = 'hscroll-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', (i + 1) + '番目');
+          dot.addEventListener('click', function () { goTo(i); });
+          dotsWrap.appendChild(dot);
+        });
+
+        var dots = Array.from(dotsWrap.querySelectorAll('.hscroll-dot'));
+
+        function goTo(i) {
+          items[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        }
+
+        function activeIdx() {
+          var best = 0, bestScore = -Infinity;
+          var tRect = track.getBoundingClientRect();
+          items.forEach(function (item, i) {
+            var r = item.getBoundingClientRect();
+            var overlap = Math.min(r.right, tRect.right) - Math.max(r.left, tRect.left);
+            if (overlap > bestScore) { bestScore = overlap; best = i; }
+          });
+          return best;
+        }
+
+        function update() {
+          var idx = activeIdx();
+          dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+          if (prevBtn) prevBtn.disabled = (idx === 0);
+          if (nextBtn) nextBtn.disabled = (idx === count - 1);
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function () { goTo(Math.max(0, activeIdx() - 1)); });
+        if (nextBtn) nextBtn.addEventListener('click', function () { goTo(Math.min(count - 1, activeIdx() + 1)); });
+        track.addEventListener('scroll', update, { passive: true });
+        update();
+      });
+    })();
   </script>
 
 </body>
