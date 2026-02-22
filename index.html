@@ -2602,12 +2602,11 @@
       function buildFormUrl(ans) {
         var toolText = q2Labels[ans[1]] || ans[1] || '';
         var diagnosisText = buildSummaryText(ans);
-        var userNote = ans[5] || '';
         var base = 'https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform';
         return base +
           '?entry.325123431=' + encodeURIComponent(diagnosisText) +
           '&entry.190888068=' + encodeURIComponent(toolText) +
-          '&entry.579870447=' + encodeURIComponent(userNote);
+          '&entry.579870447=' + encodeURIComponent(diagnosisText);
       }
 
       function copyText(text) {
@@ -2718,7 +2717,7 @@
             e.preventDefault();
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
-              showToast('診断結果をコピーしました。\nフォームの詳細欄に貼り付けてください。');
+              showToast('診断結果をフォームに自動入力します。\nそのまま送信してください。');
               setTimeout(function () { window.open(formUrl, '_blank', 'noopener'); }, 2500);
             });
           };
