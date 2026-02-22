@@ -50,7 +50,7 @@
     }
 
     .nav-logo {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-weight: 500;
       font-size: 18px;
       letter-spacing: 0.08em;
@@ -76,7 +76,7 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh;
+      min-height: 64vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       position: relative;
@@ -87,7 +87,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 120px 48px 80px;
+      padding: 88px 48px 64px;
       position: relative;
     }
 
@@ -104,7 +104,7 @@
 
     .hero-pain {
       font-family: 'Shippori Mincho', serif;
-      font-size: clamp(36px, 4.5vw, 60px);
+      font-size: clamp(30px, 3.6vw, 50px);
       font-weight: 600;
       line-height: 1.5;
       letter-spacing: 0.02em;
@@ -173,7 +173,7 @@
     .hero-visual-wrap {
       position: relative;
       width: 400px;
-      height: 440px;
+      height: 520px;
     }
 
     .visual-dot-grid {
@@ -184,110 +184,183 @@
       pointer-events: none;
     }
 
-    /* Prototype card — code editor style */
+    /* Shared browser chrome */
+    .browser-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .bdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .bdot.r { background: #ff5f56; }
+    .bdot.y { background: #ffbd2e; }
+    .bdot.g { background: #27c93f; }
+
+    .browser-url {
+      flex: 1;
+      margin-left: 6px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* BEFORE card — rough prototype UI */
     .card-proto {
       position: absolute;
       top: 0;
       left: 0;
-      width: 212px;
+      width: 210px;
+      background: #f4f2ee;
+      border: 1px solid #d8d3cc;
       border-radius: 10px;
       overflow: hidden;
       transform: rotate(-4deg);
       opacity: 0;
       animation: slideInLeft 0.7s ease 0.8s forwards;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
     }
 
-    .proto-titlebar {
-      background: #2d2926;
-      padding: 10px 12px;
+    .card-proto .browser-bar { background: #ebe7e1; }
+    .card-proto .browser-url { color: rgba(0,0,0,0.35); }
+
+    .proto-ui { padding: 10px 12px; background: #fff; }
+
+    .proto-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .pw { background: #ddd; border-radius: 3px; } /* placeholder widget */
+
+    .proto-hero-block {
+      height: 58px;
+      background: #ede9e3;
+      border-radius: 5px;
+      margin-bottom: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proto-hero-block .pw { width: 60px; height: 10px; }
+
+    .proto-lines { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+    .proto-lines .pw { height: 6px; }
+
+    .proto-btn .pw { height: 22px; width: 72px; border-radius: 3px; }
+
+    .proto-status {
       display: flex;
       align-items: center;
       gap: 6px;
-    }
-
-    .proto-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .proto-dot:nth-child(1) { background: #ff5f56; }
-    .proto-dot:nth-child(2) { background: #ffbd2e; }
-    .proto-dot:nth-child(3) { background: #27c93f; }
-
-    .proto-ai-tag {
-      margin-left: auto;
-      font-family: 'DM Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.06em;
-      color: rgba(255,255,255,0.35);
-      background: rgba(255,255,255,0.07);
-      padding: 2px 7px;
-      border-radius: 3px;
-    }
-
-    .proto-code {
-      background: #1e1b18;
-      padding: 12px 14px;
-      font-family: 'DM Mono', monospace;
-      font-size: 9.5px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.28);
-    }
-
-    .ck { color: #c8502a; }
-    .cf { color: rgba(255,255,255,0.6); }
-    .cs { color: #7ec878; }
-
-    .proto-alert {
-      background: #1e1b18;
-      border-top: 1px solid rgba(200,80,42,0.3);
-      padding: 8px 14px;
+      padding: 7px 12px;
+      background: rgba(200,80,42,0.07);
+      border-top: 1px solid rgba(200,80,42,0.2);
       font-family: 'DM Mono', monospace;
       font-size: 9px;
-      color: rgba(200,80,42,0.85);
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      color: rgba(200,80,42,0.9);
     }
 
-    /* Production card */
+    /* AFTER card — polished production UI */
     .card-prod {
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 224px;
+      width: 220px;
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
       transform: rotate(3deg);
       opacity: 0;
       animation: slideInRight 0.7s ease 1.0s forwards;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06);
     }
 
-    .prod-topbar {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
+    .card-prod .browser-bar { background: var(--cream); }
+    .card-prod .browser-url { color: var(--black); opacity: 0.7; }
+
+    .prod-ui { padding: 10px 12px; }
+
+    .prod-ui-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .prod-topbar-name {
-      font-family: 'DM Mono', monospace;
+    .prod-ui-logo {
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--black);
+      letter-spacing: 0.01em;
+    }
+
+    .prod-ui-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      color: var(--white);
+      background: var(--accent);
+      padding: 4px 9px;
+      border-radius: 2px;
+    }
+
+    .prod-ui-hero { margin-bottom: 10px; }
+
+    .prod-ui-heading {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .prod-ui-desc {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      margin-bottom: 4px;
+    }
+
+    .prod-ui-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .prod-ui-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--white);
+      background: var(--accent);
+      padding: 5px 12px;
+      border-radius: 2px;
     }
 
     .live-badge {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       font-family: 'DM Mono', monospace;
-      font-size: 9px;
+      font-size: 8px;
       color: #267a46;
-      background: rgba(38,122,70,0.08);
-      padding: 3px 9px;
-      border-radius: 20px;
     }
 
     .live-dot {
@@ -296,6 +369,7 @@
       border-radius: 50%;
       background: #267a46;
       animation: pulse-live 1.8s ease infinite;
+      flex-shrink: 0;
     }
 
     @keyframes pulse-live {
@@ -303,95 +377,7 @@
       50% { opacity: 0.2; }
     }
 
-    .prod-body { padding: 14px; }
-
-    .prod-kpis {
-      display: flex;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .kpi {
-      flex: 1;
-      padding-right: 10px;
-      border-right: 1px solid var(--border);
-      margin-right: 10px;
-    }
-
-    .kpi:last-child { border-right: none; margin-right: 0; padding-right: 0; }
-
-    .kpi-val {
-      font-family: 'DM Mono', monospace;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--black);
-      line-height: 1;
-      margin-bottom: 3px;
-    }
-
-    .kpi-val.green { color: #267a46; }
-
-    .kpi-key {
-      font-family: 'DM Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.1em;
-      color: var(--gray);
-    }
-
-    .prod-chart-wrap {
-      background: var(--cream);
-      border-radius: 6px;
-      padding: 10px 10px 6px;
-      margin-bottom: 10px;
-    }
-
-    .prod-chart-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.1em;
-      color: var(--gray);
-      margin-bottom: 8px;
-    }
-
-    .prod-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 3px;
-      height: 40px;
-    }
-
-    .chart-bar {
-      flex: 1;
-      background: var(--border);
-      border-radius: 2px 2px 0 0;
-    }
-
-    .chart-bar.accent { background: var(--accent); }
-
-    .prod-deploy-row {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      color: var(--gray);
-    }
-
-    .deploy-ok {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: rgba(38,122,70,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      color: #267a46;
-      flex-shrink: 0;
-    }
-
-    /* Arrow connector */
+    /* Connector */
     .cards-arrow {
       position: absolute;
       top: 50%;
@@ -400,17 +386,47 @@
       z-index: 10;
       opacity: 0;
       animation: fadeIn 0.5s ease 1.3s forwards;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .arrow-line {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, transparent, var(--accent));
+    }
+
+    .arrow-badge {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
+
+    .arrow-badge-logo {
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: 0.01em;
+    }
+
+    .arrow-badge-icon {
       color: var(--accent);
-      font-size: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      font-size: 13px;
+    }
+
+    .arrow-line-bottom {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
     }
 
     @keyframes slideInLeft {
@@ -978,7 +994,7 @@
     }
 
     .footer-logo {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 16px;
       color: var(--gray);
       letter-spacing: 0.08em;
@@ -1110,8 +1126,8 @@
         でも、<em>出せてない。</em>
       </h1>
       <p class="hero-tagline">
-        生成AIで作ったプロトタイプを、<br>
-        ちゃんと動くサービスに育てます。<br>
+        あなたのプロトタイプのバトンを受け取り、<br>
+        本番まで走ります。<br>
         開発・リリース・運用まで、まるごと。
       </p>
       <div class="hero-cta-group">
@@ -1123,66 +1139,62 @@
       <div class="hero-visual-wrap">
         <div class="visual-dot-grid"></div>
 
-        <!-- Prototype card: code editor -->
+        <!-- BEFORE: prototype browser -->
         <div class="card-proto">
-          <div class="proto-titlebar">
-            <span class="proto-dot"></span>
-            <span class="proto-dot"></span>
-            <span class="proto-dot"></span>
-            <span class="proto-ai-tag">AI Generated</span>
+          <div class="browser-bar">
+            <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+            <span class="browser-url">localhost:3000</span>
           </div>
-          <div class="proto-code">
-            <div><span class="ck">export default</span> <span class="cf">function</span> App() {</div>
-            <div>&nbsp;&nbsp;<span class="cf">return</span> (</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cf">div</span>&gt;</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="cf">h1</span>&gt;<span class="cs">Hello</span>&lt;/<span class="cf">h1</span>&gt;</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="cf">div</span>&gt;</div>
-            <div>&nbsp;&nbsp;)</div>
-            <div>}</div>
+          <div class="proto-ui">
+            <div class="proto-nav">
+              <div class="pw" style="width:36px;height:7px"></div>
+              <div style="display:flex;gap:5px">
+                <div class="pw" style="width:18px;height:6px"></div>
+                <div class="pw" style="width:18px;height:6px"></div>
+                <div class="pw" style="width:18px;height:6px"></div>
+              </div>
+            </div>
+            <div class="proto-hero-block">
+              <div class="pw" style="width:60px;height:10px"></div>
+            </div>
+            <div class="proto-lines">
+              <div class="pw" style="width:100%;height:6px"></div>
+              <div class="pw" style="width:72%;height:6px"></div>
+            </div>
+            <div class="proto-btn"><div class="pw"></div></div>
           </div>
-          <div class="proto-alert">⚠&nbsp; 未デプロイ</div>
+          <div class="proto-status">⚠&nbsp; 未デプロイ</div>
         </div>
 
-        <!-- Arrow -->
-        <div class="cards-arrow">→</div>
-
-        <!-- Production card: dashboard -->
-        <div class="card-prod">
-          <div class="prod-topbar">
-            <span class="prod-topbar-name">Baton</span>
-            <span class="live-badge"><span class="live-dot"></span>Live</span>
+        <!-- Connector: Baton receives the baton -->
+        <div class="cards-arrow">
+          <div class="arrow-line"></div>
+          <div class="arrow-badge">
+            <span class="arrow-badge-logo">Baton</span>
+            <span class="arrow-badge-icon">→</span>
           </div>
-          <div class="prod-body">
-            <div class="prod-kpis">
-              <div class="kpi">
-                <div class="kpi-val">1.2k</div>
-                <div class="kpi-key">USERS</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-val green">+23%</div>
-                <div class="kpi-key">MOM</div>
-              </div>
-              <div class="kpi">
-                <div class="kpi-val">99.9%</div>
-                <div class="kpi-key">UPTIME</div>
-              </div>
+          <div class="arrow-line-bottom"></div>
+        </div>
+
+        <!-- AFTER: production browser -->
+        <div class="card-prod">
+          <div class="browser-bar">
+            <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
+            <span class="browser-url">yourapp.jp</span>
+          </div>
+          <div class="prod-ui">
+            <div class="prod-ui-nav">
+              <span class="prod-ui-logo">App</span>
+              <span class="prod-ui-cta">はじめる</span>
             </div>
-            <div class="prod-chart-wrap">
-              <div class="prod-chart-title">MONTHLY USERS</div>
-              <div class="prod-chart">
-                <div class="chart-bar" style="height:25%"></div>
-                <div class="chart-bar" style="height:38%"></div>
-                <div class="chart-bar" style="height:44%"></div>
-                <div class="chart-bar" style="height:55%"></div>
-                <div class="chart-bar" style="height:48%"></div>
-                <div class="chart-bar" style="height:72%"></div>
-                <div class="chart-bar" style="height:65%"></div>
-                <div class="chart-bar accent" style="height:90%"></div>
-              </div>
+            <div class="prod-ui-hero">
+              <div class="prod-ui-heading">あなたのアイデアを、<br>世界へ。</div>
+              <div class="prod-ui-desc" style="width:90%"></div>
+              <div class="prod-ui-desc" style="width:68%"></div>
             </div>
-            <div class="prod-deploy-row">
-              <div class="deploy-ok">✓</div>
-              Deployed 2h ago · Production
+            <div class="prod-ui-bottom">
+              <div class="prod-ui-btn">今すぐ試す</div>
+              <div class="live-badge"><span class="live-dot"></span>Live · 1.2k</div>
             </div>
           </div>
         </div>
@@ -1311,7 +1323,6 @@
           <span class="price">¥100,000</span><span class="unit">/ 月〜</span>
         </div>
         <ul class="pricing-includes">
-          <li>月20時間の開発稼働</li>
           <li>プロトタイプレビュー</li>
           <li>本番化ロードマップ作成</li>
           <li>チャットサポート</li>
@@ -1325,7 +1336,6 @@
           <span class="price">¥300,000</span><span class="unit">/ 月〜</span>
         </div>
         <ul class="pricing-includes">
-          <li>月60時間の開発稼働</li>
           <li>UX設計・体験設計</li>
           <li>インフラ構築・デプロイ</li>
           <li>週次ミーティング</li>
@@ -1339,7 +1349,6 @@
           <span class="price">¥500,000</span><span class="unit">/ 月〜</span>
         </div>
         <ul class="pricing-includes">
-          <li>月120時間の開発稼働</li>
           <li>運用・保守対応</li>
           <li>機能追加・改善提案</li>
           <li>専属ディレクター</li>
