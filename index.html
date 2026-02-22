@@ -1594,6 +1594,31 @@
       }
     }
 
+    /* TOAST */
+    .quiz-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      padding: 14px 24px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 9999;
+    }
+    .quiz-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     /* STEP NDA NOTE */
     .step-nda {
       margin-top: 24px;
@@ -2437,8 +2462,8 @@
           <div class="result-next-value" id="result-next"></div>
         </div>
         <div class="result-cta-group">
-          <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="result-btn-line">この結果をもとにLINEチャットで相談</a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
+          <a href="#" id="result-line-btn" target="_blank" rel="noopener" class="result-btn-line">この結果をもとにLINEチャットで相談</a>
+          <a href="#" id="result-form-btn" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
         </div>
         <button class="quiz-retry" id="quiz-retry">もう一度診断する</button>
       </div>
@@ -2531,6 +2556,64 @@
         medium: '余裕を持ったスケジュールで進めましょう。',
         tbd: 'まずは方向性を整理するところから始めましょう。'
       };
+      var q1Labels = { web: 'Webアプリ / SaaS', mobile: 'スマホアプリ', internal: '社内ツール・業務系', lp: 'LP / 情報サイト' };
+      var q2Labels = { 'ai-ide': 'Cursor / Claude / ChatGPT', 'ai-gen': 'v0 / Bolt / Lovable', nocode: 'No-code（Webflow, Bubble等）', code: '自分でコードを書いた' };
+      var q3Labels = { A: 'LPだけ', B: 'ログインまで動く', C: '決済手前まで', D: '一応全部動く' };
+      var q4Labels = { '1': 'インフラ・デプロイ', '2': '認証・セキュリティ', '3': 'UX・デザイン', '4': '全体的に不安' };
+      var q5Labels = { asap: 'できるだけ早く（1ヶ月以内）', soon: '1〜3ヶ月以内', medium: '3〜6ヶ月以内', tbd: 'まだ決めていない' };
+
+      function buildSummaryText(ans) {
+        var q3 = ans[2], q4 = ans[3], q5 = ans[4];
+        var nextText = ((nextMap[q3 + q4] || '') + ' ' + (urgencyMap[q5] || '')).trim();
+        return [
+          '【Baton 診断結果】',
+          'Q1 アプリの種類: ' + (q1Labels[ans[0]] || ans[0] || '未回答'),
+          'Q2 使用ツール: ' + (q2Labels[ans[1]] || ans[1] || '未回答'),
+          'Q3 完成度: ' + (q3Labels[q3] || q3 || '未回答') + '（' + (statusMap[q3] || '') + '）',
+          'Q4 困っていること: ' + (q4Labels[q4] || q4 || '未回答'),
+          'Q5 リリース目標: ' + (q5Labels[q5] || q5 || '未回答'),
+          '',
+          'あなたの状態: ' + (statusMap[q3] || ''),
+          '本番化までの想定期間: ' + (timelineMap[q3] || ''),
+          'まず取り組むべきこと: ' + nextText
+        ].join('\n');
+      }
+
+      function buildFormUrl(ans) {
+        var q3 = ans[2], q4 = ans[3], q5 = ans[4];
+        var statusText = (statusMap[q3] || '') + ' / ' + (timelineMap[q3] || '');
+        var toolText = q2Labels[ans[1]] || ans[1] || '';
+        var detailText = buildSummaryText(ans);
+        var base = 'https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform';
+        return base +
+          '?entry.325123431=' + encodeURIComponent(statusText) +
+          '&entry.190888068=' + encodeURIComponent(toolText) +
+          '&entry.579870447=' + encodeURIComponent(detailText);
+      }
+
+      function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        // fallback
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        return Promise.resolve();
+      }
+
+      function showToast(msg) {
+        var toast = document.getElementById('quiz-toast');
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(function () { toast.classList.remove('show'); }, 3500);
+      }
 
       var quiz = document.getElementById('quiz');
       var result = document.getElementById('quiz-result');
@@ -2588,6 +2671,24 @@
         document.getElementById('result-timeline').textContent = timelineMap[q3] || '';
         var nextText = (nextMap[q3 + q4] || '') + ' ' + (urgencyMap[q5] || '');
         document.getElementById('result-next').textContent = nextText.trim();
+
+        // Set form URL with pre-filled answers
+        var formBtn = document.getElementById('result-form-btn');
+        if (formBtn) formBtn.href = buildFormUrl(answers);
+
+        // Set LINE button click handler
+        var lineBtn = document.getElementById('result-line-btn');
+        if (lineBtn) {
+          lineBtn.onclick = function (e) {
+            e.preventDefault();
+            var summary = buildSummaryText(answers);
+            copyText(summary).then(function () {
+              showToast('回答内容をコピーしました。LINEに貼り付けて送ってください。');
+              setTimeout(function () { window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener'); }, 600);
+            });
+          };
+        }
+
         quiz.style.display = 'none';
         result.style.display = 'block';
         result.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -2656,5 +2757,6 @@
     })();
   </script>
 
+  <div class="quiz-toast" id="quiz-toast"></div>
 </body>
 </html>
