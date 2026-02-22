@@ -1275,6 +1275,248 @@
       letter-spacing: 0.05em;
     }
 
+    /* DIAGNOSIS QUIZ */
+    .diagnosis {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    .diagnosis-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .diagnosis-sub {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 2;
+      margin-bottom: 48px;
+    }
+
+    .quiz-wrap {
+      max-width: 640px;
+    }
+
+    .quiz-q {
+      margin-bottom: 36px;
+    }
+
+    .quiz-q-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .quiz-q-text {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 19px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .quiz-option {
+      cursor: pointer;
+    }
+
+    .quiz-option input {
+      display: none;
+    }
+
+    .quiz-option span {
+      display: block;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-size: 13px;
+      color: var(--black);
+      line-height: 1.5;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .quiz-option:hover span {
+      border-color: var(--accent);
+    }
+
+    .quiz-option input:checked + span {
+      border-color: var(--accent);
+      background: rgba(200,80,42,0.05);
+      color: var(--accent);
+    }
+
+    .quiz-submit {
+      margin-top: 8px;
+      width: 100%;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 16px 40px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+
+    .quiz-submit:disabled {
+      opacity: 0.25;
+      cursor: default;
+    }
+
+    .quiz-submit:not(:disabled):hover {
+      background: var(--black);
+    }
+
+    /* Result */
+    .quiz-result {
+      display: none;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .result-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .result-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      margin-bottom: 2px;
+    }
+
+    .result-card {
+      background: var(--white);
+      padding: 28px 28px;
+    }
+
+    .result-card-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .result-card-value {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.5;
+    }
+
+    .result-next {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--accent);
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+
+    .result-next-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .result-next-value {
+      font-size: 14px;
+      color: var(--black);
+      line-height: 2;
+    }
+
+    .result-cta-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .result-btn-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #06C755;
+      color: #fff;
+      padding: 14px 28px;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .result-btn-line:hover { background: #05b34c; }
+
+    .result-btn-form {
+      display: inline-block;
+      background: transparent;
+      color: var(--black);
+      border: 1px solid var(--border);
+      padding: 14px 28px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .result-btn-form:hover {
+      border-color: var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .quiz-retry {
+      background: none;
+      border: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+      .result-cards {
+        grid-template-columns: 1fr;
+      }
+      .result-cta-group {
+        flex-direction: column;
+      }
+      .result-btn-line,
+      .result-btn-form {
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
     /* STEP NDA NOTE */
     .step-nda {
       margin-top: 24px;
@@ -1628,7 +1870,7 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">Baton</a>
-    <a href="#contact" class="nav-cta">無料で診断を受ける</a>
+    <a href="#diagnosis" class="nav-cta">無料で診断を受ける</a>
   </nav>
 
   <!-- HERO -->
@@ -1646,7 +1888,7 @@
       </p>
       <p class="hero-note">初回診断、無料です</p>
       <div class="hero-cta-group">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="btn-primary">無料でアプリを診断する</a>
+        <a href="#diagnosis" class="btn-primary">無料でアプリを診断する</a>
         <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEで話す</a>
       </div>
     </div>
@@ -1947,7 +2189,7 @@
     <div class="cta-inline-right">
       <p class="cta-free-note">初回相談、無料</p>
       <div class="cta-inline-buttons">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="btn-inline-form">フォームで診断を受ける →</a>
+        <a href="#diagnosis" class="btn-inline-form">無料で診断を受ける →</a>
         <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="btn-inline-line">LINEで相談</a>
       </div>
     </div>
@@ -2019,6 +2261,66 @@
     </div>
   </section>
 
+  <!-- DIAGNOSIS QUIZ -->
+  <section class="diagnosis" id="diagnosis">
+    <div class="section-label reveal">プロトタイプ診断</div>
+    <h2 class="diagnosis-title reveal">あなたのアプリ、<br>本番化できますか？</h2>
+    <p class="diagnosis-sub reveal">2問答えるだけで、今の状態と次のステップがわかります。</p>
+
+    <div class="quiz-wrap reveal">
+
+      <!-- QUIZ -->
+      <div id="quiz">
+        <div class="quiz-q">
+          <div class="quiz-q-label">Q1</div>
+          <div class="quiz-q-text">どこまで作れていますか？</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q1" value="A"><span>LPだけ</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="B"><span>ログインまで動く</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="C"><span>決済手前まで</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="D"><span>一応全部動く</span></label>
+          </div>
+        </div>
+        <div class="quiz-q">
+          <div class="quiz-q-label">Q2</div>
+          <div class="quiz-q-text">一番困っていることは？</div>
+          <div class="quiz-options">
+            <label class="quiz-option"><input type="radio" name="q2" value="1"><span>インフラ・デプロイ</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="2"><span>認証・セキュリティ</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="3"><span>UX・デザイン</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="4"><span>全体的に不安</span></label>
+          </div>
+        </div>
+        <button class="quiz-submit" id="quiz-submit" disabled>診断する →</button>
+      </div>
+
+      <!-- RESULT -->
+      <div id="quiz-result" class="quiz-result">
+        <div class="result-eyebrow">診断結果</div>
+        <div class="result-cards">
+          <div class="result-card">
+            <div class="result-card-label">あなたの状態</div>
+            <div class="result-card-value" id="result-status"></div>
+          </div>
+          <div class="result-card">
+            <div class="result-card-label">本番化までの想定期間</div>
+            <div class="result-card-value" id="result-timeline"></div>
+          </div>
+        </div>
+        <div class="result-next">
+          <div class="result-next-label">まず取り組むべきこと</div>
+          <div class="result-next-value" id="result-next"></div>
+        </div>
+        <div class="result-cta-group">
+          <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="result-btn-line">この結果をもとにLINEで話す</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
+        </div>
+        <button class="quiz-retry" id="quiz-retry">もう一度診断する</button>
+      </div>
+
+    </div>
+  </section>
+
   <!-- TRUST GUARANTEE -->
   <div class="trust-guarantee">
     <div class="trust-guarantee-inner">
@@ -2075,6 +2377,62 @@
     }, { threshold: 0.1 });
 
     reveals.forEach(el => observer.observe(el));
+
+    // Diagnosis quiz
+    (function () {
+      var status = { A: '構想・初期段階', B: '基本機能完成', C: 'PoC完成型', D: 'プロトタイプ完成型' };
+      var timeline = { A: '12〜16週間', B: '8〜12週間', C: '6〜8週間', D: '4〜6週間' };
+      var next = {
+        A1: '本番を見据えた技術スタックの整理と、インフラ設計から始めましょう。',
+        A2: 'MVPを固めながら、セキュリティを考慮した設計を一から組みます。',
+        A3: 'コアバリューを整理し、UX設計と開発を並走させて進めます。',
+        A4: '何を作るかの整理から。全体像を一緒に定義するところから始めます。',
+        B1: '認証まわりを本番品質に引き上げつつ、インフラを整備します。',
+        B2: '認証・セキュリティの強化を最優先に、本番化ロードマップを組みます。',
+        B3: '機能は揃っています。UXを磨きながら、本番環境を整えます。',
+        B4: '現状をレビューして、本番化に必要な要件を洗い出します。',
+        C1: '決済実装とインフラ構築をまとめて進めます。リリースが一気に近づきます。',
+        C2: '決済・認証まわりのセキュリティを集中的に固めます。',
+        C3: '決済前のUXが最後の壁。ここを磨けばリリースが現実になります。',
+        C4: 'あと一歩です。全体をレビューして、本番化の最終チェックを行います。',
+        D1: 'コードを読んで本番インフラを設計します。思ったより早く出せるはずです。',
+        D2: '動いているものを活かしながら、セキュリティを本番レベルに引き上げます。',
+        D3: 'プロダクトは完成しています。UXを磨けば、すぐリリースできます。',
+        D4: 'ほぼ出せる状態です。一緒にレビューして、最終判断を行います。'
+      };
+
+      var q1 = null, q2 = null;
+      var quiz = document.getElementById('quiz');
+      var result = document.getElementById('quiz-result');
+      var submitBtn = document.getElementById('quiz-submit');
+      if (!quiz || !result || !submitBtn) return;
+
+      document.querySelectorAll('input[name="q1"]').forEach(function (r) {
+        r.addEventListener('change', function () { q1 = this.value; check(); });
+      });
+      document.querySelectorAll('input[name="q2"]').forEach(function (r) {
+        r.addEventListener('change', function () { q2 = this.value; check(); });
+      });
+
+      function check() { submitBtn.disabled = !(q1 && q2); }
+
+      submitBtn.addEventListener('click', function () {
+        document.getElementById('result-status').textContent = status[q1];
+        document.getElementById('result-timeline').textContent = timeline[q1];
+        document.getElementById('result-next').textContent = next[q1 + q2] || '';
+        quiz.style.display = 'none';
+        result.style.display = 'block';
+        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      document.getElementById('quiz-retry').addEventListener('click', function () {
+        q1 = null; q2 = null;
+        document.querySelectorAll('input[name="q1"], input[name="q2"]').forEach(function (r) { r.checked = false; });
+        submitBtn.disabled = true;
+        result.style.display = 'none';
+        quiz.style.display = 'block';
+      });
+    })();
 
     // Horizontal scroll — mobile
     (function () {
