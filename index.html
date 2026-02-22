@@ -1456,38 +1456,6 @@
       background: var(--black);
     }
 
-    .quiz-q-note {
-      font-size: 11px;
-      color: var(--gray);
-      letter-spacing: 0.05em;
-      margin-bottom: 16px;
-    }
-
-    .quiz-textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      background: var(--white);
-      color: var(--black);
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      padding: 14px 16px;
-      resize: vertical;
-      outline: none;
-      transition: border-color 0.2s;
-      letter-spacing: 0.03em;
-      line-height: 1.7;
-    }
-
-    .quiz-textarea:focus {
-      border-color: var(--black);
-    }
-
-    .quiz-textarea::placeholder {
-      color: var(--gray);
-      opacity: 0.6;
-    }
-
     /* Result */
     .quiz-result {
       display: none;
@@ -2427,10 +2395,10 @@
       <div id="quiz">
         <div class="quiz-progress-wrap">
           <div class="quiz-progress-header">
-            <span class="quiz-step-label" id="quiz-step-label">STEP 1 / 6</span>
+            <span class="quiz-step-label" id="quiz-step-label">STEP 1 / 5</span>
           </div>
           <div class="quiz-progress-track">
-            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:16.666%"></div>
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:20%"></div>
           </div>
         </div>
 
@@ -2487,13 +2455,6 @@
             <label class="quiz-option"><input type="radio" name="q5" value="medium"><span>3〜6ヶ月以内</span></label>
             <label class="quiz-option"><input type="radio" name="q5" value="tbd"><span>まだ決めていない</span></label>
           </div>
-        </div>
-
-        <div class="quiz-step" data-step="5">
-          <div class="quiz-q-label">Q6</div>
-          <div class="quiz-q-text">アプリのURLや、気になっていることを教えてください。</div>
-          <div class="quiz-q-note">任意・フォーム送信時にそのまま転記されます</div>
-          <textarea class="quiz-textarea" id="quiz-q6" rows="4" placeholder="https://... または自由にどうぞ"></textarea>
         </div>
 
         <div class="quiz-nav">
@@ -2690,50 +2651,35 @@
 
       var steps = Array.from(quiz.querySelectorAll('.quiz-step'));
       var currentStep = 0;
-      var answers = [null, null, null, null, null, ''];
-      var totalSteps = 6;
+      var answers = [null, null, null, null, null];
 
       // Init: show only first step
       steps.forEach(function (s, i) { s.style.display = i === 0 ? 'block' : 'none'; });
       prevBtn.style.display = 'none';
       submitBtn.style.display = 'none';
 
-      // Wire radios (Q1–Q5)
+      // Wire radios
       steps.forEach(function (step, idx) {
-        if (idx === 5) return; // Q6 is text, handled separately
         step.querySelectorAll('input[type="radio"]').forEach(function (r) {
           r.addEventListener('change', function () {
             answers[idx] = this.value;
             if (idx < 4) nextBtn.disabled = false;
-            // Q5 (idx=4): next goes to Q6
-            else nextBtn.disabled = false;
+            else submitBtn.disabled = false;
           });
         });
       });
-
-      // Wire Q6 textarea
-      var q6El = document.getElementById('quiz-q6');
-      if (q6El) {
-        q6El.addEventListener('input', function () { answers[5] = this.value; });
-      }
 
       function goToStep(n) {
         steps[currentStep].style.display = 'none';
         steps[n].style.display = 'block';
         currentStep = n;
-        if (progressFill) progressFill.style.width = ((n + 1) / totalSteps * 100) + '%';
-        if (stepLabel) stepLabel.textContent = 'STEP ' + (n + 1) + ' / ' + totalSteps;
+        if (progressFill) progressFill.style.width = ((n + 1) / 5 * 100) + '%';
+        if (stepLabel) stepLabel.textContent = 'STEP ' + (n + 1) + ' / 5';
         prevBtn.style.display = n === 0 ? 'none' : '';
-        if (n === totalSteps - 1) {
-          // Q6: optional text — submit always enabled here
+        if (n === 4) {
           nextBtn.style.display = 'none';
           submitBtn.style.display = '';
-          submitBtn.disabled = false;
-        } else if (n === 4) {
-          // Q5: radio required before going next
-          nextBtn.style.display = '';
-          submitBtn.style.display = 'none';
-          nextBtn.disabled = !answers[4];
+          submitBtn.disabled = !answers[4];
         } else {
           nextBtn.style.display = '';
           submitBtn.style.display = 'none';
@@ -2741,7 +2687,7 @@
         }
       }
 
-      nextBtn.addEventListener('click', function () { if (currentStep < 4 ? answers[currentStep] : answers[4]) goToStep(currentStep + 1); });
+      nextBtn.addEventListener('click', function () { if (answers[currentStep]) goToStep(currentStep + 1); });
       prevBtn.addEventListener('click', function () { if (currentStep > 0) goToStep(currentStep - 1); });
 
       submitBtn.addEventListener('click', function () {
@@ -2774,9 +2720,8 @@
       });
 
       document.getElementById('quiz-retry').addEventListener('click', function () {
-        answers = [null, null, null, null, null, ''];
+        answers = [null, null, null, null, null];
         quiz.querySelectorAll('input[type="radio"]').forEach(function (r) { r.checked = false; });
-        if (q6El) q6El.value = '';
         result.style.display = 'none';
         quiz.style.display = 'block';
         goToStep(0);
