@@ -1294,7 +1294,22 @@
       padding: 40px 48px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-info {
+      font-size: 11px;
+      color: var(--gray);
+      line-height: 2;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-info a {
+      color: var(--gray);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .footer-logo {
@@ -2669,6 +2684,12 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">Baton</div>
+    <div class="footer-info">
+      運営会社：株式会社tane<br>
+      所在地：東京都中央区銀座1-22-11<br>
+      代表者：池西哲郎<br>
+      お問い合わせ：<a href="mailto:tetsuro.ikenishi@ta-ne.co.jp">tetsuro.ikenishi@ta-ne.co.jp</a>
+    </div>
     <div class="footer-copy">© 2025 Baton. All rights reserved.</div>
   </footer>
 
