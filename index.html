@@ -2914,6 +2914,7 @@
           formBtn.removeAttribute('target');
           formBtn.onclick = function () {
             var summary = buildSummaryText(answers);
+            try { sessionStorage.setItem('baton_diagnosis', summary); } catch (e) {}
             var ta = document.createElement('textarea');
             ta.value = summary;
             ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
@@ -2922,7 +2923,6 @@
             ta.select();
             try { document.execCommand('copy'); } catch (e) {}
             document.body.removeChild(ta);
-            showToast('診断結果をコピーしました。\nフォームのお問い合わせ内容欄に貼り付けてください。');
           };
         }
 
