@@ -1741,6 +1741,29 @@
     .quiz-toast.show {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+    .quiz-toast-backdrop.show {
+      pointer-events: auto;
+    }
+    .quiz-toast-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      line-height: 1;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #888;
+    }
+    .quiz-toast-close:hover {
+      color: var(--black);
     }
     .quiz-toast-check {
       font-size: 32px;
@@ -2736,6 +2759,13 @@
         return Promise.resolve();
       }
 
+      function hideToast() {
+        var toast = document.getElementById('quiz-toast');
+        var backdrop = document.getElementById('quiz-toast-backdrop');
+        if (toast) toast.classList.remove('show');
+        if (backdrop) backdrop.classList.remove('show');
+      }
+
       function showToast(msg) {
         var toast = document.getElementById('quiz-toast');
         var backdrop = document.getElementById('quiz-toast-backdrop');
@@ -2744,10 +2774,17 @@
         if (msgEl) msgEl.innerHTML = msg.replace(/\n/g, '<br>');
         toast.classList.add('show');
         if (backdrop) backdrop.classList.add('show');
-        setTimeout(function () {
-          toast.classList.remove('show');
-          if (backdrop) backdrop.classList.remove('show');
-        }, 4000);
+        setTimeout(hideToast, 4000);
+      }
+
+      var toastCloseBtn = document.getElementById('quiz-toast-close');
+      if (toastCloseBtn) {
+        toastCloseBtn.addEventListener('click', hideToast);
+      }
+
+      var toastBackdrop = document.getElementById('quiz-toast-backdrop');
+      if (toastBackdrop) {
+        toastBackdrop.addEventListener('click', hideToast);
       }
 
       var quiz = document.getElementById('quiz');
@@ -2917,6 +2954,7 @@
 
   <div class="quiz-toast-backdrop" id="quiz-toast-backdrop"></div>
   <div class="quiz-toast" id="quiz-toast">
+    <button class="quiz-toast-close" id="quiz-toast-close">✕</button>
     <span class="quiz-toast-check">✓</span>
     <span id="quiz-toast-msg"></span>
   </div>
