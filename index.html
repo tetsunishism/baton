@@ -1608,6 +1608,31 @@
       align-self: flex-start;
     }
 
+    .result-line-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-self: flex-start;
+    }
+
+    .result-copy-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+      font-size: 11px;
+      color: #999;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      letter-spacing: 0.05em;
+      text-align: left;
+    }
+
+    .result-copy-btn:hover {
+      color: var(--black);
+    }
+
     .result-form-note {
       margin: 0;
       font-size: 11px;
@@ -2568,7 +2593,10 @@
           <p class="result-disclaimer">※ あなたの回答をもとにした目安です。実際の状況によって異なります。</p>
         </div>
         <div class="result-cta-group">
-          <a href="#" id="result-line-btn" target="_blank" rel="noopener" class="result-btn-line">この結果をもとに<br>LINEチャットで相談</a>
+          <div class="result-line-wrap">
+            <a href="#" id="result-line-btn" target="_blank" rel="noopener" class="result-btn-line">この結果をもとに<br>LINEチャットで相談</a>
+            <button class="result-copy-btn" id="result-copy-btn">診断結果をコピーする場合はこちら</button>
+          </div>
           <div class="result-form-wrap">
             <a href="#" id="result-form-btn" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
             <p class="result-form-note">※ クリックするとお問い合わせフォームへ移動します。診断結果はフォームに自動で入力されます。</p>
@@ -2789,6 +2817,23 @@
         var lineBtn = document.getElementById('result-line-btn');
         if (lineBtn) {
           lineBtn.href = 'https://lin.ee/pgD9ZMg';
+        }
+
+        // Set copy button
+        var copyBtn = document.getElementById('result-copy-btn');
+        if (copyBtn) {
+          copyBtn.onclick = function () {
+            var summary = buildSummaryText(answers);
+            var ta = document.createElement('textarea');
+            ta.value = summary;
+            ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
+          };
         }
 
         // Set form button
