@@ -1616,21 +1616,21 @@
     }
 
     .result-copy-btn {
-      background: none;
-      border: none;
-      padding: 0;
+      background: #f0f0ec;
+      border: 1px solid #ccc;
+      padding: 10px 16px;
       font-family: inherit;
-      font-size: 11px;
-      color: #999;
+      font-size: 13px;
+      color: #444;
       cursor: pointer;
-      text-decoration: underline;
-      text-underline-offset: 3px;
       letter-spacing: 0.05em;
       text-align: left;
+      display: inline-block;
     }
 
     .result-copy-btn:hover {
-      color: var(--black);
+      background: #e8e8e4;
+      border-color: #aaa;
     }
 
     .result-form-note {
@@ -2594,8 +2594,8 @@
         </div>
         <div class="result-cta-group">
           <div class="result-line-wrap">
+            <button class="result-copy-btn" id="result-copy-btn">📋 診断結果をコピーしてLINEに貼り付ける</button>
             <a href="#" id="result-line-btn" target="_blank" rel="noopener" class="result-btn-line">この結果をもとに<br>LINEチャットで相談</a>
-            <button class="result-copy-btn" id="result-copy-btn">診断結果をコピーする場合はこちら</button>
           </div>
           <div class="result-form-wrap">
             <a href="#" id="result-form-btn" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
