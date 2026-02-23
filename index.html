@@ -2807,7 +2807,7 @@
             var win = window.open('', '_blank');
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
-              showToast('診断結果をフォームに自動入力します。\nそのまま送信してください。');
+              showToast('フォームへ移動します。\n診断結果はフォームに自動で入力されています。\nそのまま送信してください。');
               setTimeout(function () { win.location.href = formUrl; }, 2000);
             });
           };
