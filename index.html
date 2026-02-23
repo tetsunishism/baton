@@ -1575,11 +1575,43 @@
       line-height: 2;
     }
 
+    .result-note {
+      font-size: 11px;
+      font-weight: 400;
+      color: #888;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+      letter-spacing: 0;
+    }
+
+    .result-disclaimer {
+      margin: 12px 0 0;
+      font-size: 12px;
+      color: #999;
+      line-height: 1.6;
+    }
+
     .result-cta-group {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       margin-bottom: 20px;
+    }
+
+    .result-form-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .result-form-note {
+      margin: 0;
+      font-size: 11px;
+      color: #999;
+      line-height: 1.6;
     }
 
     .result-btn-line {
@@ -2525,17 +2557,21 @@
             <div class="result-card-value" id="result-status"></div>
           </div>
           <div class="result-card">
-            <div class="result-card-label">本番化までの想定期間</div>
+            <div class="result-card-label">本番化までの想定期間 <span class="result-note">目安</span></div>
             <div class="result-card-value" id="result-timeline"></div>
           </div>
         </div>
         <div class="result-next">
-          <div class="result-next-label">本番化までにやること</div>
+          <div class="result-next-label">本番化までにやること <span class="result-note">目安</span></div>
           <ol class="result-steps" id="result-steps"></ol>
+          <p class="result-disclaimer">※ あなたの回答をもとにした目安です。実際の状況によって異なります。</p>
         </div>
         <div class="result-cta-group">
           <a href="#" id="result-line-btn" target="_blank" rel="noopener" class="result-btn-line">この結果をもとに<br>LINEチャットで相談</a>
-          <a href="#" id="result-form-btn" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
+          <div class="result-form-wrap">
+            <a href="#" id="result-form-btn" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
+            <p class="result-form-note">※ クリックするとお問い合わせフォームへ移動します。診断結果はフォームに自動で入力されます。</p>
+          </div>
         </div>
         <button class="quiz-retry" id="quiz-retry">もう一度診断する</button>
       </div>
@@ -2547,7 +2583,7 @@
   <div class="trust-guarantee">
     <div class="trust-guarantee-inner">
       <div class="trust-guarantee-main">
-        <div class="trust-guarantee-title">アイデアは、絶対に使いません。</div>
+        <div class="trust-guarantee-title">アイデアは、絶対に漏らしません。</div>
         <div class="trust-guarantee-body">お聞きしたアイデアや構想を自分たちが実装すること、他のクライアントにお話しすること——どちらも、絶対にしません。信頼があってこそ、一緒にいい仕事ができると思っています。</div>
       </div>
       <div class="trust-guarantee-free">
@@ -2613,10 +2649,10 @@
         B2: ['パスワードが安全に保管されているか確認する', '不正ログイン対策（試行回数の制限）を入れる', 'ログインの有効期限を設定する', '全ページで通信が暗号化されているか確認する', 'AIが書いたログインコードは要注意 — 一緒に確認します'],
         B3: ['ログイン後の画面を整理する（何ができるか一目でわかるか）', '読み込み中・エラー・データがないときの画面を作る', 'スマホで使えるか確認する', '色・フォントなど見た目を統一する', '目的達成までの手順を最短にする'],
         B4: ['今の状態を一緒に整理する（何が動いて何が足りないか）', 'セキュリティ上の問題がないか確認する', '必要な作業をリスト化して優先順位をつける', 'リリースまでのスケジュールを引く'],
-        C1: ['本番サーバーを立てる', '独自ドメインと鍵マーク（SSL）の設定', 'Stripeの本番アカウントを申請する（審査に数日かかります）', '支払い完了がシステムに自動連携される設定をする', '実際に決済テストをして確認する'],
-        C2: ['全ページで通信が暗号化されているか確認する', 'ログインセッションを強化する', 'カード情報は自前で持たずStripeに任せる設計にする', 'APIキーをコードの外で安全に管理する', '不正なアクセスをブロックする設定をする'],
-        C3: ['決済の流れを整理する（選ぶ → 入力 → 確認 → 完了）', 'カードが使えなかったときのエラー画面を作る', '支払い完了後のお礼ページと確認メールを設計する', 'スマホで決済できるか確認する', '安心感を高めるデザインにする'],
-        C4: ['今のコードで決済前に問題がないか確認する', 'サーバーとStripeの設定を進める', '出す前のチェックリストを一緒に作る', 'テスト決済で問題なければリリース'],
+        C1: ['本番サーバーを立てる', '独自ドメインと鍵マーク（SSL）の設定をする', '開発用と本番用の設定・環境変数を分ける', 'コードを更新したら自動で反映される仕組みを作る', 'アクセスが増えても耐えられる構成にしておく'],
+        C2: ['全ページで通信が暗号化されているか確認する', '認証フローのコードを全体的に見直す', 'セッション管理とログインの有効期限を強化する', 'APIキーや秘密情報をコードの外で安全に管理する', '不正アクセス・XSSなどの基本的な対策を入れる'],
+        C3: ['コア機能を使う流れを整理して、迷わない導線にする', '読み込み中・エラー・データなし画面をちゃんと作る', 'スマホで問題なく使えるか確認する', '色・フォント・ボタンのデザインを統一する', '実際に誰かに使ってもらってフィードバックをもらう'],
+        C4: ['コード全体を見て、品質と安全性に問題がないか確認する', '未実装の機能をリストアップして優先順位をつける', '本番サーバーの構築と環境設定を進める', '出す前のチェックリストを一緒に作る', '限定公開で少人数に試してもらい、問題なければ本公開へ'],
         D1: ['コードを読んで本番に適したサーバーを選ぶ', 'アクセスが増えても耐えられる設計にする', 'データのバックアップ体制を作る', '表示速度を上げる設定をする', '問題が起きたら即通知される監視を入れる'],
         D2: ['ログインまわりのコードを全部確認する', 'よくある攻撃（不正ログイン・データ改ざん等）への対策を確認する', 'ログインセッションの管理を強化する', 'サーバーの機密情報を安全に管理する', 'アクセスログを残す（問題発生時の追跡のため）'],
         D3: ['一番使われる機能のUXを改善する', '色・フォント・ボタンのデザインを統一する', '読み込み中・エラー・データなし画面を仕上げる', 'スマホ対応を完成させる', '実際に使ってもらってフィードバックを反映する'],
@@ -2753,10 +2789,11 @@
         if (lineBtn) {
           lineBtn.onclick = function (e) {
             e.preventDefault();
+            var win = window.open('', '_blank');
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
-              setTimeout(function () { window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener'); }, 2500);
+              setTimeout(function () { win.location.href = 'https://lin.ee/pgD9ZMg'; }, 2000);
             });
           };
         }
@@ -2767,10 +2804,11 @@
           var formUrl = buildFormUrl(answers);
           formBtn.onclick = function (e) {
             e.preventDefault();
+            var win = window.open('', '_blank');
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をフォームに自動入力します。\nそのまま送信してください。');
-              setTimeout(function () { window.open(formUrl, '_blank', 'noopener'); }, 2500);
+              setTimeout(function () { win.location.href = formUrl; }, 2000);
             });
           };
         }
