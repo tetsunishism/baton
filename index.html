@@ -2181,7 +2181,7 @@
       <div class="hero-cta-group">
         <a href="#diagnosis" class="btn-primary">5問で、本番化への道筋を確認する</a>
         <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEチャットで相談</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="hero-form-link">フォームで直接問い合わせる →</a>
+        <a href="/contact" class="hero-form-link">フォームで直接問い合わせる →</a>
       </div>
     </div>
     <div class="hero-right">
@@ -2659,7 +2659,7 @@
           </div>
           <div class="result-form-wrap">
             <a href="#" id="result-form-btn" target="_blank" rel="noopener" class="result-btn-form">フォームで詳細を送る →</a>
-            <p class="result-form-note">※ クリックするとお問い合わせフォームへ移動します。診断結果はフォームに自動で入力されます。</p>
+            <p class="result-form-note">※ クリックすると診断結果がコピーされ、フォームへ移動します。お問い合わせ内容欄に貼り付けてください。</p>
           </div>
         </div>
         <button class="quiz-retry" id="quiz-retry">もう一度診断する</button>
@@ -2695,7 +2695,7 @@
     </p>
     <div class="cta-buttons reveal">
       <a href="#diagnosis" class="btn-cta">まず、無料で診断してみる</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeg1vKYykTH-vw3h0bDuijQVmJwv9t5n2eN1JlJ5PgAwS8Q/viewform" target="_blank" rel="noopener" class="btn-cta-secondary">フォームで直接問い合わせる →</a>
+      <a href="/contact" class="btn-cta-secondary">フォームで直接問い合わせる →</a>
       <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="btn-line">
         <svg class="btn-line-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.03 2 11c0 3.08 1.56 5.82 4 7.58V22l3.5-2.1c.81.22 1.63.1 2.5.1 5.52 0 10-4.03 10-9S17.52 2 12 2zm1 13H8v-1.5h5V15zm0-3H8v-1.5h5V12zm2-3H8V7.5h7V9z"/></svg>
         LINEチャットで相談する
@@ -2926,8 +2926,20 @@
         // Set form button
         var formBtn = document.getElementById('result-form-btn');
         if (formBtn) {
-          var formUrl = buildFormUrl(answers);
-          formBtn.href = formUrl;
+          formBtn.href = '/contact';
+          formBtn.removeAttribute('target');
+          formBtn.onclick = function () {
+            var summary = buildSummaryText(answers);
+            var ta = document.createElement('textarea');
+            ta.value = summary;
+            ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            showToast('診断結果をコピーしました。\nフォームのお問い合わせ内容欄に貼り付けてください。');
+          };
         }
 
         quiz.style.display = 'none';
