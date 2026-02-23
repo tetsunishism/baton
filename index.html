@@ -2789,11 +2789,10 @@
         if (lineBtn) {
           lineBtn.onclick = function (e) {
             e.preventDefault();
-            var win = window.open('', '_blank');
+            window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener');
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
-              setTimeout(function () { win.location.href = 'https://lin.ee/pgD9ZMg'; }, 2000);
             });
           };
         }
@@ -2804,11 +2803,10 @@
           var formUrl = buildFormUrl(answers);
           formBtn.onclick = function (e) {
             e.preventDefault();
-            var win = window.open('', '_blank');
+            window.open(formUrl, '_blank', 'noopener');
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をフォームに自動入力します。\nそのまま送信してください。');
-              setTimeout(function () { win.location.href = formUrl; }, 2000);
             });
           };
         }
