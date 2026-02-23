@@ -2789,6 +2789,18 @@
         var lineBtn = document.getElementById('result-line-btn');
         if (lineBtn) {
           lineBtn.href = 'https://lin.ee/pgD9ZMg';
+          lineBtn.onclick = function () {
+            var summary = buildSummaryText(answers);
+            var ta = document.createElement('textarea');
+            ta.value = summary;
+            ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
+          };
         }
 
         // Set form button
