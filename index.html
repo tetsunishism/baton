@@ -2784,12 +2784,11 @@
           stepsEl.appendChild(li);
         });
 
-        // Set LINE button click handler
+        // Set LINE button
         var lineBtn = document.getElementById('result-line-btn');
         if (lineBtn) {
-          lineBtn.onclick = function (e) {
-            e.preventDefault();
-            window.open('https://lin.ee/pgD9ZMg', '_blank', 'noopener');
+          lineBtn.href = 'https://lin.ee/pgD9ZMg';
+          lineBtn.onclick = function () {
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
@@ -2797,13 +2796,12 @@
           };
         }
 
-        // Set form button click handler
+        // Set form button
         var formBtn = document.getElementById('result-form-btn');
         if (formBtn) {
           var formUrl = buildFormUrl(answers);
-          formBtn.onclick = function (e) {
-            e.preventDefault();
-            window.open(formUrl, '_blank', 'noopener');
+          formBtn.href = formUrl;
+          formBtn.onclick = function () {
             var summary = buildSummaryText(answers);
             copyText(summary).then(function () {
               showToast('診断結果をフォームに自動入力します。\nそのまま送信してください。');
