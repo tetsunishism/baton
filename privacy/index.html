@@ -47,10 +47,14 @@
       font-size: 24px;
       font-weight: 600;
       letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+    .updated {
+      font-size: 12px;
+      color: var(--gray);
       margin-bottom: 48px;
     }
     h2 {
-      font-family: 'Noto Sans JP', sans-serif;
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 0.06em;
@@ -60,17 +64,25 @@
       font-size: 14px;
       line-height: 1.9;
       color: #444;
+      margin-bottom: 8px;
     }
+    ul {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.9;
+      padding-left: 20px;
+    }
+    ul li { margin-bottom: 4px; }
     a { color: var(--black); }
-    .updated {
-      font-size: 12px;
-      color: var(--gray);
-      margin-bottom: 40px;
+    .contact-block {
+      font-size: 14px;
+      color: #444;
+      line-height: 2;
     }
     @media (max-width: 600px) {
       header { padding: 20px 24px; }
       main { padding: 48px 24px 80px; }
-      h1 { font-size: 20px; margin-bottom: 32px; }
+      h1 { font-size: 20px; }
     }
     footer {
       border-top: 1px solid var(--border);
@@ -91,26 +103,57 @@
 
   <main>
     <h1>プライバシーポリシー</h1>
-    <p class="updated">制定日：2025年1月1日</p>
+    <p class="updated">制定日：2026年2月</p>
 
-    <h2>1. 事業者情報</h2>
-    <p>株式会社tane（以下「当社」）は、本ウェブサイト「Baton」におけるお客様の個人情報の取り扱いについて、以下の通り定めます。</p>
+    <p>株式会社tane（以下、「当社」といいます。）は、当社が提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下の通りプライバシーポリシーを定めます。</p>
 
-    <h2>2. 取得する情報</h2>
-    <p>当社は、お問い合わせフォームやLINE相談を通じて、お名前・メールアドレス・サービスに関するご相談内容等の情報をお預かりする場合があります。</p>
+    <h2>1. 取得する情報</h2>
+    <p>当社は、お問い合わせ・サービス提供にあたり、以下の情報を取得する場合があります。</p>
+    <ul>
+      <li>氏名</li>
+      <li>会社名</li>
+      <li>メールアドレス</li>
+      <li>電話番号（任意）</li>
+      <li>お問い合わせ内容</li>
+      <li>その他サービス提供に必要な情報</li>
+    </ul>
 
-    <h2>3. 利用目的</h2>
-    <p>取得した個人情報は、サービスのご提供・ご相談への回答・お見積りの送付など、お客様との業務上のやり取りにのみ使用します。第三者への提供や販売は行いません。</p>
+    <h2>2. 利用目的</h2>
+    <p>取得した情報は、以下の目的のために利用します。</p>
+    <ul>
+      <li>お問い合わせへの回答</li>
+      <li>サービス提供および運営のため</li>
+      <li>必要なご連絡（契約・打合せ・サポート等）</li>
+      <li>サービス改善および品質向上のため</li>
+      <li>法令への対応</li>
+    </ul>
 
-    <h2>4. 第三者提供</h2>
-    <p>法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+    <h2>3. 第三者提供について</h2>
+    <p>当社は、以下の場合を除き、取得した個人情報を第三者へ提供することはありません。</p>
+    <ul>
+      <li>本人の同意がある場合</li>
+      <li>法令に基づく場合</li>
+      <li>サービス提供に必要な範囲で業務委託先へ提供する場合</li>
+    </ul>
 
-    <h2>5. 安全管理</h2>
-    <p>個人情報の漏洩・紛失・改ざんを防ぐため、適切な安全管理措置を講じます。</p>
+    <h2>4. 情報の管理</h2>
+    <p>当社は、個人情報の漏えい、滅失、毀損を防止するため、適切な安全管理措置を講じます。</p>
 
-    <h2>6. お問い合わせ</h2>
-    <p>個人情報の開示・訂正・削除に関するご要望は、下記までご連絡ください。<br>
-    メール：<a href="mailto:tetsuro.ikenishi@ta-ne.co.jp">tetsuro.ikenishi@ta-ne.co.jp</a></p>
+    <h2>5. アクセス解析ツールについて</h2>
+    <p>本サイトでは、サイト改善のためアクセス解析ツールを利用する場合があります。これによりCookie等の技術を用いて匿名のトラフィックデータを収集することがあります。</p>
+
+    <h2>6. 個人情報の開示・訂正・削除</h2>
+    <p>ご本人から個人情報の開示・訂正・削除のご希望があった場合、適切に対応いたします。</p>
+
+    <h2>7. 改定</h2>
+    <p>本ポリシーは、必要に応じて改定されることがあります。</p>
+
+    <h2>8. お問い合わせ窓口</h2>
+    <div class="contact-block">
+      株式会社tane<br>
+      〒104-0061 東京都中央区銀座1丁目22−11<br>
+      メール：<a href="mailto:tetsuro.ikenishi@ta-ne.co.jp">tetsuro.ikenishi@ta-ne.co.jp</a>
+    </div>
   </main>
 
   <footer>
