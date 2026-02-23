@@ -1312,6 +1312,28 @@
       text-underline-offset: 3px;
     }
 
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      color: var(--gray);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      letter-spacing: 0.04em;
+    }
+
     .footer-logo {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 16px;
@@ -2170,7 +2192,7 @@
         <div class="card-proto">
           <div class="browser-bar">
             <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
-            <span class="browser-url">localhost:3000</span>
+            <span class="browser-url">myapp.example.com</span>
           </div>
           <div class="proto-ui">
             <div class="proto-nav">
@@ -2190,7 +2212,7 @@
             </div>
             <div class="proto-btn"><div class="pw"></div></div>
           </div>
-          <div class="proto-status">⚠&nbsp; 未デプロイ</div>
+          <div class="proto-status">本番化前</div>
         </div>
 
         <!-- Connector: Baton receives the baton -->
@@ -2690,7 +2712,13 @@
       代表者：池西哲郎<br>
       お問い合わせ：<a href="mailto:tetsuro.ikenishi@ta-ne.co.jp">tetsuro.ikenishi@ta-ne.co.jp</a>
     </div>
-    <div class="footer-copy">© 2025 Baton. All rights reserved.</div>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="/legal">特定商取引法に基づく表記</a>
+        <a href="/privacy">プライバシーポリシー</a>
+      </div>
+      <div class="footer-copy">© 2025 Baton. All rights reserved.</div>
+    </div>
   </footer>
 
   <script>
