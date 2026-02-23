@@ -1632,20 +1632,19 @@
 
     .result-btn-form {
       display: inline-block;
-      background: transparent;
-      color: var(--black);
-      border: 1px solid var(--border);
+      background: var(--black);
+      color: var(--white);
+      border: 1px solid var(--black);
       padding: 14px 28px;
       font-size: 13px;
       letter-spacing: 0.08em;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+      width: fit-content;
+      transition: opacity 0.2s;
     }
 
     .result-btn-form:hover {
-      border-color: var(--black);
-      background: var(--black);
-      color: var(--white);
+      opacity: 0.75;
     }
 
     .quiz-retry {
@@ -1674,6 +1673,7 @@
       .result-btn-form {
         text-align: center;
         justify-content: center;
+        align-self: flex-start;
       }
     }
 
@@ -2788,12 +2788,6 @@
         var lineBtn = document.getElementById('result-line-btn');
         if (lineBtn) {
           lineBtn.href = 'https://lin.ee/pgD9ZMg';
-          lineBtn.onclick = function () {
-            var summary = buildSummaryText(answers);
-            copyText(summary).then(function () {
-              showToast('診断結果をコピーしました。\nLINEに貼り付けて送ってください。');
-            });
-          };
         }
 
         // Set form button
@@ -2801,12 +2795,6 @@
         if (formBtn) {
           var formUrl = buildFormUrl(answers);
           formBtn.href = formUrl;
-          formBtn.onclick = function () {
-            var summary = buildSummaryText(answers);
-            copyText(summary).then(function () {
-              showToast('診断結果をフォームに自動入力します。\nそのまま送信してください。');
-            });
-          };
         }
 
         quiz.style.display = 'none';
