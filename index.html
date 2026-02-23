@@ -1798,6 +1798,8 @@
       justify-content: center;
       cursor: pointer;
       color: #888;
+      pointer-events: auto;
+      z-index: 1;
     }
     .quiz-toast-close:hover {
       color: var(--black);
@@ -2809,13 +2811,6 @@
         return Promise.resolve();
       }
 
-      function hideToast() {
-        var toast = document.getElementById('quiz-toast');
-        var backdrop = document.getElementById('quiz-toast-backdrop');
-        if (toast) toast.classList.remove('show');
-        if (backdrop) backdrop.classList.remove('show');
-      }
-
       function showToast(msg) {
         var toast = document.getElementById('quiz-toast');
         var backdrop = document.getElementById('quiz-toast-backdrop');
@@ -2824,17 +2819,6 @@
         if (msgEl) msgEl.innerHTML = msg.replace(/\n/g, '<br>');
         toast.classList.add('show');
         if (backdrop) backdrop.classList.add('show');
-        setTimeout(hideToast, 4000);
-      }
-
-      var toastCloseBtn = document.getElementById('quiz-toast-close');
-      if (toastCloseBtn) {
-        toastCloseBtn.addEventListener('click', hideToast);
-      }
-
-      var toastBackdrop = document.getElementById('quiz-toast-backdrop');
-      if (toastBackdrop) {
-        toastBackdrop.addEventListener('click', hideToast);
       }
 
       var quiz = document.getElementById('quiz');
@@ -3020,5 +3004,20 @@
     <span class="quiz-toast-check">✓</span>
     <span id="quiz-toast-msg"></span>
   </div>
+
+  <script>
+    (function () {
+      function hideToast() {
+        var toast = document.getElementById('quiz-toast');
+        var backdrop = document.getElementById('quiz-toast-backdrop');
+        if (toast) toast.classList.remove('show');
+        if (backdrop) backdrop.classList.remove('show');
+      }
+      var closeBtn = document.getElementById('quiz-toast-close');
+      if (closeBtn) closeBtn.addEventListener('click', hideToast);
+      var backdrop = document.getElementById('quiz-toast-backdrop');
+      if (backdrop) backdrop.addEventListener('click', hideToast);
+    })();
+  </script>
 </body>
 </html>
