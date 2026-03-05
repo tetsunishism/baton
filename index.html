@@ -16,7 +16,7 @@
   <meta name="twitter:image" content="https://baton.technology/ogp.png">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --black: #0d0d0d;
@@ -42,9 +42,10 @@
     body {
       background: var(--white);
       color: var(--black);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* NAV */
@@ -58,56 +59,99 @@
       justify-content: space-between;
       align-items: center;
       padding: 24px 48px;
-      mix-blend-mode: normal;
+      transition: background 0.3s ease, border-bottom 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-weight: 500;
-      font-size: 18px;
-      letter-spacing: 0.08em;
-      color: var(--black);
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+      color: #ffffff;
       text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav.scrolled .nav-logo {
+      color: var(--black);
     }
 
     .nav-cta {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 13px;
       font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 9px 22px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, color 0.2s, border-color 0.3s;
+    }
+
+    nav.scrolled .nav-cta {
       color: var(--white);
       background: var(--dark);
-      padding: 10px 24px;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: background 0.2s;
+      border-color: var(--dark);
     }
 
     .nav-cta:hover {
       background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
     }
 
     /* HERO */
     .hero {
-      min-height: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: #0a0a0a;
       position: relative;
       overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, #0a0a0a);
+      pointer-events: none;
     }
 
     .hero-left {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 56px 48px 48px;
+      justify-content: center;
+      padding: 140px 80px 100px;
       position: relative;
+      max-width: 920px;
     }
 
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 12px;
       letter-spacing: 0.08em;
       color: var(--black);
@@ -126,12 +170,13 @@
     }
 
     .hero-pain {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: clamp(30px, 3.6vw, 50px);
-      font-weight: 600;
-      line-height: 1.5;
-      letter-spacing: 0.02em;
-      margin-bottom: 48px;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      font-size: clamp(38px, 5.2vw, 72px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      color: #ffffff;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.2s forwards;
     }
@@ -142,12 +187,12 @@
     }
 
     .hero-tagline {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 300;
-      color: var(--gray);
-      line-height: 2;
-      max-width: 380px;
-      margin-bottom: 56px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.9;
+      max-width: 480px;
+      margin-bottom: 48px;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.4s forwards;
     }
@@ -186,7 +231,7 @@
     }
 
     .cta-free-note {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.15em;
       color: var(--accent);
@@ -230,19 +275,19 @@
 
     .hero-form-link {
       display: inline-block;
-      color: var(--gray);
+      color: rgba(255,255,255,0.38);
       font-size: 13px;
       font-weight: 300;
       letter-spacing: 0.05em;
       text-decoration: none;
       padding: 4px 0;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
       transition: color 0.2s, border-color 0.2s;
     }
 
     .hero-form-link:hover {
-      color: var(--black);
-      border-color: var(--black);
+      color: rgba(255,255,255,0.75);
+      border-color: rgba(255,255,255,0.4);
     }
 
     .hero-right {
@@ -289,7 +334,7 @@
       background: rgba(0,0,0,0.06);
       border-radius: 4px;
       padding: 3px 8px;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 8px;
       white-space: nowrap;
       overflow: hidden;
@@ -352,7 +397,7 @@
       padding: 7px 12px;
       background: rgba(16,163,127,0.07);
       border-top: 1px solid rgba(16,163,127,0.2);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 9px;
       color: rgba(16,163,127,0.9);
     }
@@ -396,7 +441,7 @@
     }
 
     .prod-ui-cta {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 8px;
       color: var(--white);
       background: var(--accent);
@@ -407,7 +452,7 @@
     .prod-ui-hero { margin-bottom: 10px; }
 
     .prod-ui-heading {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 13px;
       font-weight: 600;
       color: var(--black);
@@ -431,7 +476,7 @@
     }
 
     .prod-ui-btn {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 9px;
       color: var(--white);
       background: var(--accent);
@@ -443,7 +488,7 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 8px;
       color: var(--accent);
     }
@@ -530,7 +575,7 @@
     }
 
     .section-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.2em;
       color: var(--accent);
@@ -574,7 +619,7 @@
     }
 
     .problem-num {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 11px;
       color: var(--accent);
       letter-spacing: 0.1em;
@@ -582,7 +627,7 @@
     }
 
     .problem-text {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 22px;
       font-weight: 600;
       line-height: 1.7;
@@ -605,12 +650,12 @@
     }
 
     .what-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 600;
-      line-height: 1.7;
+      font-weight: 700;
+      line-height: 1.5;
       margin-bottom: 40px;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.01em;
     }
 
     .what-title em {
@@ -632,12 +677,12 @@
     }
 
     .for-whom-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: clamp(24px, 3vw, 36px);
-      font-weight: 600;
-      line-height: 1.7;
+      font-weight: 700;
+      line-height: 1.5;
       margin-bottom: 56px;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.01em;
     }
 
     .for-whom-title em {
@@ -658,7 +703,7 @@
     }
 
     .for-whom-tag {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.2em;
       color: var(--accent);
@@ -667,7 +712,7 @@
     }
 
     .for-whom-name {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 20px;
       font-weight: 600;
       line-height: 1.6;
@@ -741,7 +786,7 @@
     }
 
     .step-num {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.15em;
       color: var(--accent);
@@ -762,7 +807,7 @@
     }
 
     .step-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 16px;
@@ -793,14 +838,14 @@
     }
 
     .why-icon {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 28px;
       color: var(--accent);
       margin-bottom: 24px;
     }
 
     .why-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 20px;
       font-weight: 600;
       margin-bottom: 12px;
@@ -819,7 +864,7 @@
     }
 
     .pricing-lead {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: clamp(24px, 3vw, 36px);
       font-weight: 600;
       line-height: 1.7;
@@ -854,7 +899,7 @@
     }
 
     .pricing-card-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.15em;
       color: var(--accent);
@@ -867,7 +912,7 @@
     }
 
     .pricing-card-name {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 8px;
@@ -885,7 +930,7 @@
     }
 
     .pricing-amount {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       margin-bottom: 32px;
     }
 
@@ -986,7 +1031,7 @@
     .team-info {}
 
     .team-role {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.2em;
       color: var(--accent);
@@ -995,7 +1040,7 @@
     }
 
     .team-name {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 16px;
@@ -1025,7 +1070,7 @@
     }
 
     .cases-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: clamp(24px, 3vw, 36px);
       font-weight: 600;
       margin-bottom: 56px;
@@ -1050,7 +1095,7 @@
     }
 
     .case-tag {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.2em;
       color: var(--accent);
@@ -1059,7 +1104,7 @@
     }
 
     .case-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 12px;
@@ -1092,7 +1137,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: clamp(80px, 15vw, 200px);
       color: rgba(0,0,0,0.04);
       white-space: nowrap;
@@ -1101,7 +1146,7 @@
     }
 
     .cta-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.2em;
       color: var(--accent);
@@ -1110,7 +1155,7 @@
     }
 
     .cta-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: clamp(32px, 4vw, 52px);
       font-weight: 600;
       line-height: 1.6;
@@ -1197,7 +1242,7 @@
       margin-top: 32px;
       font-size: 12px;
       color: var(--gray);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       letter-spacing: 0.05em;
     }
 
@@ -1214,7 +1259,7 @@
     }
 
     .cta-inline-text {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 20px;
       font-weight: 600;
       color: var(--black);
@@ -1345,7 +1390,7 @@
     .footer-copy {
       font-size: 11px;
       color: var(--border);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       letter-spacing: 0.05em;
     }
 
@@ -1356,7 +1401,7 @@
     }
 
     .diagnosis-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: clamp(24px, 3vw, 36px);
       font-weight: 600;
       line-height: 1.7;
@@ -1380,7 +1425,7 @@
     }
 
     .quiz-q-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.2em;
       color: var(--accent);
@@ -1388,7 +1433,7 @@
     }
 
     .quiz-q-text {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 19px;
       font-weight: 600;
       margin-bottom: 18px;
@@ -1441,7 +1486,7 @@
     }
 
     .quiz-step-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.15em;
       color: var(--gray);
@@ -1470,7 +1515,7 @@
       background: transparent;
       border: 1px solid var(--border);
       color: var(--gray);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.08em;
       padding: 14px 20px;
@@ -1490,7 +1535,7 @@
       background: var(--dark);
       color: var(--white);
       border: none;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 13px;
       letter-spacing: 0.08em;
       padding: 14px;
@@ -1513,7 +1558,7 @@
       color: var(--white);
       border: none;
       padding: 14px;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 13px;
       font-weight: 400;
       letter-spacing: 0.08em;
@@ -1537,7 +1582,7 @@
     }
 
     .result-eyebrow {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.2em;
       color: var(--accent);
@@ -1559,7 +1604,7 @@
     }
 
     .result-card-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.15em;
       color: var(--gray);
@@ -1568,7 +1613,7 @@
     }
 
     .result-card-value {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 20px;
       font-weight: 600;
       color: var(--black);
@@ -1584,7 +1629,7 @@
     }
 
     .result-next-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.15em;
       color: var(--accent);
@@ -1714,7 +1759,7 @@
     .quiz-retry {
       background: none;
       border: none;
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 11px;
       letter-spacing: 0.1em;
       color: var(--gray);
@@ -1761,7 +1806,7 @@
       transform: translate(-50%, -50%) scale(0.92);
       background: var(--white);
       color: var(--black);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 15px;
       font-weight: 300;
       letter-spacing: 0.04em;
@@ -1816,7 +1861,7 @@
       margin-top: 24px;
       padding-top: 16px;
       border-top: 1px solid rgba(0,0,0,0.08);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.12em;
       color: var(--accent);
@@ -1843,7 +1888,7 @@
     }
 
     .trust-guarantee-title {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 22px;
       font-weight: 600;
       color: var(--white);
@@ -1866,7 +1911,7 @@
     }
 
     .trust-free-label {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 10px;
       letter-spacing: 0.2em;
       color: rgba(255,255,255,0.35);
@@ -1875,7 +1920,7 @@
     }
 
     .trust-free-value {
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 36px;
       font-weight: 600;
       color: var(--accent-light);
@@ -1989,7 +2034,7 @@
         background: transparent;
         border: 1px solid var(--border);
         color: var(--black);
-        font-family: 'Noto Sans JP', sans-serif;
+        font-family: 'Inter', 'Noto Sans JP', sans-serif;
         font-size: 14px;
         cursor: pointer;
         display: flex;
@@ -2059,16 +2104,11 @@
       }
 
       .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
+        min-height: 100svh;
       }
 
       .hero-left {
-        padding: 48px 24px 28px;
-      }
-
-      .hero-eyebrow {
-        margin-bottom: 20px;
+        padding: 120px 28px 80px;
       }
 
       .hero-pain {
@@ -2076,7 +2116,7 @@
       }
 
       .hero-tagline {
-        margin-bottom: 32px;
+        margin-bottom: 36px;
       }
 
       .hero-cta-group {
@@ -2085,39 +2125,8 @@
         gap: 12px;
       }
 
-      .btn-primary,
       .hero-line-link {
         text-align: center;
-      }
-
-      .hero-right {
-        height: 480px;
-      }
-
-      .hero-visual-wrap {
-        width: 210px;
-        height: 440px;
-      }
-
-      .card-proto,
-      .card-prod {
-        width: 190px;
-      }
-
-      /* 縦積みレイアウト：回転なし・中央揃え */
-      .card-proto {
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        animation: slideInMobileTop 0.7s ease 0.8s forwards;
-      }
-
-      .card-prod {
-        bottom: 0;
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        animation: slideInMobileBottom 0.7s ease 1.0s forwards;
       }
 
       section {
@@ -2181,71 +2190,6 @@
       <div class="hero-cta-group">
         <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEで話を聞かせてください</a>
         <a href="/contact" class="hero-form-link">フォームで相談する →</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-visual-wrap">
-        <div class="visual-dot-grid"></div>
-
-        <!-- BEFORE: prototype browser -->
-        <div class="card-proto">
-          <div class="browser-bar">
-            <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
-            <span class="browser-url">myapp.example.com</span>
-          </div>
-          <div class="proto-ui">
-            <div class="proto-nav">
-              <div class="pw" style="width:36px;height:7px"></div>
-              <div style="display:flex;gap:5px">
-                <div class="pw" style="width:18px;height:6px"></div>
-                <div class="pw" style="width:18px;height:6px"></div>
-                <div class="pw" style="width:18px;height:6px"></div>
-              </div>
-            </div>
-            <div class="proto-hero-block">
-              <div class="pw" style="width:60px;height:10px"></div>
-            </div>
-            <div class="proto-lines">
-              <div class="pw" style="width:100%;height:6px"></div>
-              <div class="pw" style="width:72%;height:6px"></div>
-            </div>
-            <div class="proto-btn"><div class="pw"></div></div>
-          </div>
-          <div class="proto-status">本番化前</div>
-        </div>
-
-        <!-- Connector: Baton receives the baton -->
-        <div class="cards-arrow">
-          <div class="arrow-line"></div>
-          <div class="arrow-badge">
-            <span class="arrow-badge-logo">Baton</span>
-            <span class="arrow-badge-icon">→</span>
-          </div>
-          <div class="arrow-line-bottom"></div>
-        </div>
-
-        <!-- AFTER: production browser -->
-        <div class="card-prod">
-          <div class="browser-bar">
-            <span class="bdot r"></span><span class="bdot y"></span><span class="bdot g"></span>
-            <span class="browser-url">yourapp.jp</span>
-          </div>
-          <div class="prod-ui">
-            <div class="prod-ui-nav">
-              <span class="prod-ui-logo">App</span>
-              <span class="prod-ui-cta">はじめる</span>
-            </div>
-            <div class="prod-ui-hero">
-              <div class="prod-ui-heading">あなたのアイデアを、<br>世界へ。</div>
-              <div class="prod-ui-desc" style="width:90%"></div>
-              <div class="prod-ui-desc" style="width:68%"></div>
-            </div>
-            <div class="prod-ui-bottom">
-              <div class="prod-ui-btn">今すぐ試す</div>
-              <div class="live-badge"><span class="live-dot"></span>Live · 1.2k</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -3001,6 +2945,21 @@
     <span class="quiz-toast-check">✓</span>
     <span id="quiz-toast-msg"></span>
   </div>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('nav');
+      function updateNav() {
+        if (window.scrollY > 60) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
+    })();
+  </script>
 
   <script>
     (function () {
