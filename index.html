@@ -96,31 +96,20 @@
     /* HERO */
     .hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-left {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 120px 72px 80px;
-      position: relative;
+      justify-content: flex-end;
+      padding: 0 80px 14vh;
+      border-bottom: 1px solid var(--border);
     }
 
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-right img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
+    .hero-company {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: var(--gray);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0s forwards;
     }
 
     .hero-eyebrow {
@@ -146,40 +135,37 @@
     }
 
     .hero-pain {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      font-size: clamp(48px, 6.5vw, 96px);
+      font-size: clamp(52px, 9vw, 130px);
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.05;
       letter-spacing: -0.03em;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       color: var(--black);
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.2s forwards;
+      animation: fadeUp 0.8s ease 0.15s forwards;
     }
 
     .hero-pain em {
       font-style: normal;
-      color: var(--black);
     }
 
     .hero-tagline {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
       color: var(--gray);
-      line-height: 1.9;
-      max-width: 360px;
-      margin-bottom: 40px;
+      line-height: 1.8;
+      margin-bottom: 36px;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.4s forwards;
+      animation: fadeUp 0.8s ease 0.3s forwards;
     }
 
     .hero-cta-group {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.6s forwards;
+      animation: fadeUp 0.8s ease 0.42s forwards;
     }
 
     .btn-primary {
@@ -2080,26 +2066,7 @@
       }
 
       .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-      }
-
-      .hero-left {
-        padding: 100px 24px 48px;
-      }
-
-      .hero-right {
-        height: 56vw;
-        min-height: 240px;
-        max-height: 400px;
-      }
-
-      .hero-pain {
-        margin-bottom: 20px;
-      }
-
-      .hero-tagline {
-        margin-bottom: 32px;
+        padding: 0 24px 12vh;
       }
 
       .hero-cta-group {
@@ -2161,26 +2128,12 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-left">
-      <h1 class="hero-pain">
-        AIで作ったプロトタイプを、<br>
-        <em>本番まで届けます。</em>
-      </h1>
-      <p class="hero-tagline">
-        開発・リリース・運用まで一気通貫で引き受けます。<br>
-        あなたが作ったものを活かして、世に出す専門チームです。
-      </p>
-      <div class="hero-cta-group">
-        <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEで話を聞かせてください</a>
-        <a href="/contact" class="hero-form-link">フォームで相談する →</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <img
-        src="https://images.unsplash.com/photo-1769628628044-769bff843c17?w=1400&q=85&fit=crop"
-        alt=""
-        aria-hidden="true"
-      >
+    <p class="hero-company">株式会社tane</p>
+    <h1 class="hero-pain">AIで作ったプロトタイプを、<br>本番まで届けます。</h1>
+    <p class="hero-tagline">開発・デザイン・リリース・運用まで、一気通貫で。</p>
+    <div class="hero-cta-group">
+      <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEで相談する</a>
+      <a href="/contact" class="hero-form-link">フォームで問い合わせる →</a>
     </div>
   </section>
 
@@ -2220,9 +2173,9 @@
         <em>受け取って</em>、本番まで走ります。
       </h2>
       <p class="what-body reveal">
-        Batonは、AIで作ったプロトタイプを起点に、本番リリースと運用まで一気通貫で引き受ける開発サービスです。<br><br>
-        「ゼロから作ります」ではなく、「あなたが作ったものを活かします」。<br>
-        体験設計とAI開発のプロフェッショナルが、プロトタイプのバトンを受け取り、世に出せる形に育てます。
+        Batonは、AIで作ったプロトタイプを起点に、本番リリースと運用まで引き受けるサービスです。「ゼロから作ります」ではなく、「あなたが作ったものを活かして、世に出します」。<br><br>
+        本番化で詰まるのは、決まって同じ壁です。認証・決済システムの組み込み、インフラ構築とデプロイ設定、セキュリティ対策、スマホ対応、パフォーマンス最適化——そしてリリース後のバグ対応・機能追加・監視体制。<br><br>
+        Batonはそのすべてを引き受けます。コンセプト設計・コピーライティング・UIデザインも含め、プロダクトとして完成させるところまでが仕事です。
       </p>
     </div>
   </section>
