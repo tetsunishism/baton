@@ -19,14 +19,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #1a1714;
-      --dark: #1e2d3d;
-      --white: #f5f3ef;
-      --cream: #ede9e1;
-      --accent: #c8502a;
-      --accent-light: #e8845f;
-      --gray: #6b6660;
-      --border: #d4cfc7;
+      --black: #0d0d0d;
+      --dark: #111111;
+      --white: #ffffff;
+      --cream: #f7f7f5;
+      --accent: #10a37f;
+      --accent-light: #0db57f;
+      --gray: #737373;
+      --border: #e5e5e5;
     }
 
     * {
@@ -133,7 +133,7 @@
       letter-spacing: 0.02em;
       margin-bottom: 48px;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.4s forwards;
+      animation: fadeUp 0.8s ease 0.2s forwards;
     }
 
     .hero-pain em {
@@ -149,7 +149,7 @@
       max-width: 380px;
       margin-bottom: 56px;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.6s forwards;
+      animation: fadeUp 0.8s ease 0.4s forwards;
     }
 
     .hero-cta-group {
@@ -158,7 +158,7 @@
       align-items: flex-start;
       gap: 12px;
       opacity: 0;
-      animation: fadeUp 0.8s ease 0.8s forwards;
+      animation: fadeUp 0.8s ease 0.6s forwards;
     }
 
     .btn-primary {
@@ -302,7 +302,7 @@
       top: 0;
       left: 0;
       width: 210px;
-      background: #f4f2ee;
+      background: #f5f5f5;
       border: 1px solid #e0e0e0;
       border-radius: 10px;
       overflow: hidden;
@@ -312,7 +312,7 @@
       box-shadow: 0 6px 24px rgba(0,0,0,0.1);
     }
 
-    .card-proto .browser-bar { background: #ebe7e1; }
+    .card-proto .browser-bar { background: #f0f0f0; }
     .card-proto .browser-url { color: rgba(0,0,0,0.35); }
 
     .proto-ui { padding: 10px 12px; background: #fff; }
@@ -330,7 +330,7 @@
 
     .proto-hero-block {
       height: 58px;
-      background: #ede9e3;
+      background: #efefee;
       border-radius: 5px;
       margin-bottom: 9px;
       display: flex;
@@ -350,11 +350,11 @@
       align-items: center;
       gap: 6px;
       padding: 7px 12px;
-      background: rgba(200,80,42,0.07);
-      border-top: 1px solid rgba(200,80,42,0.2);
+      background: rgba(16,163,127,0.07);
+      border-top: 1px solid rgba(16,163,127,0.2);
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 9px;
-      color: rgba(200,80,42,0.9);
+      color: rgba(16,163,127,0.9);
     }
 
     /* AFTER card — polished production UI */
@@ -445,14 +445,14 @@
       gap: 4px;
       font-family: 'Noto Sans JP', sans-serif;
       font-size: 8px;
-      color: #267a46;
+      color: var(--accent);
     }
 
     .live-dot {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: #267a46;
+      background: var(--accent);
       animation: pulse-live 1.8s ease infinite;
       flex-shrink: 0;
     }
@@ -705,7 +705,7 @@
 
     /* FLOW */
     .flow {
-      background: #f0eeeb;
+      background: #f7f7f5;
       color: var(--black);
     }
 
@@ -1425,7 +1425,7 @@
 
     .quiz-option input:checked + span {
       border-color: var(--accent);
-      background: rgba(200,80,42,0.05);
+      background: rgba(16,163,127,0.08);
       color: var(--accent);
     }
 
@@ -1504,7 +1504,7 @@
     }
 
     .quiz-next:not(:disabled):hover {
-      background: #2d4a63;
+      background: #0d9068;
     }
 
     .quiz-submit {
@@ -1654,8 +1654,8 @@
     }
 
     .result-copy-btn {
-      background: #f0eeeb;
-      border: 1px solid #ccc;
+      background: #f4f4f4;
+      border: 1px solid #ddd;
       padding: 10px 16px;
       font-family: inherit;
       font-size: 13px;
@@ -1667,8 +1667,8 @@
     }
 
     .result-copy-btn:hover {
-      background: #e8e8e4;
-      border-color: #aaa;
+      background: #ebebeb;
+      border-color: #bbb;
     }
 
     .result-form-note {
@@ -2170,21 +2170,17 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <p class="hero-eyebrow">Prototype <span>→</span> Production</p>
       <h1 class="hero-pain">
-        アプリ、作れた。<br>
-        でも、<em>出せてない。</em>
+        AIで作ったプロトタイプを、<br>
+        <em>本番まで届けます。</em>
       </h1>
       <p class="hero-tagline">
-        あなたのプロトタイプのバトンを受け取り、<br>
-        本番まで走ります。<br>
-        開発・リリース・運用まで、まるごと。
+        開発・リリース・運用まで一気通貫で引き受けます。<br>
+        あなたが作ったものを活かして、世に出す専門チームです。
       </p>
-      <p class="hero-note">無料・予約不要。5問で、本番化への道筋が即わかります。</p>
       <div class="hero-cta-group">
-        <a href="#diagnosis" class="btn-primary">5問で、本番化への道筋を確認する</a>
-        <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEチャットで相談</a>
-        <a href="/contact" class="hero-form-link">フォームで直接問い合わせる →</a>
+        <a href="https://lin.ee/pgD9ZMg" target="_blank" rel="noopener" class="hero-line-link">LINEで話を聞かせてください</a>
+        <a href="/contact" class="hero-form-link">フォームで相談する →</a>
       </div>
     </div>
     <div class="hero-right">
